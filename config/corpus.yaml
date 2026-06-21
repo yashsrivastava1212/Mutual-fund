@@ -1,0 +1,47 @@
+amc: HDFC Mutual Fund
+source: groww
+schemes:
+  - slug: hdfc-mid-cap-fund-direct-growth
+    scheme_name: HDFC Mid Cap Fund Direct Growth
+    category: Equity — Mid Cap
+    source_url: https://groww.in/mutual-funds/hdfc-mid-cap-fund-direct-growth
+    aliases:
+      - mid cap
+      - hdfc mid cap
+      - midcap
+
+  - slug: hdfc-large-cap-fund-direct-growth
+    scheme_name: HDFC Large Cap Fund Direct Growth
+    category: Equity — Large Cap
+    source_url: https://groww.in/mutual-funds/hdfc-large-cap-fund-direct-growth
+    aliases:
+      - large cap
+      - hdfc large cap
+      - largecap
+
+  - slug: hdfc-small-cap-fund-direct-growth
+    scheme_name: HDFC Small Cap Fund Direct Growth
+    category: Equity — Small Cap
+    source_url: https://groww.in/mutual-funds/hdfc-small-cap-fund-direct-growth
+    aliases:
+      - small cap
+      - hdfc small cap
+      - smallcap
+
+  - slug: hdfc-gold-etf-fund-of-fund-direct-plan-growth
+    scheme_name: HDFC Gold ETF Fund of Fund Direct Plan Growth
+    category: Fund of Funds
+    source_url: https://groww.in/mutual-funds/hdfc-gold-etf-fund-of-fund-direct-plan-growth
+    aliases:
+      - gold etf
+      - gold fof
+      - hdfc gold
+
+  - slug: hdfc-defence-fund-direct-growth
+    scheme_name: HDFC Defence Fund Direct Growth
+    category: Equity — Sectoral
+    source_url: https://groww.in/mutual-funds/hdfc-defence-fund-direct-growth
+    aliases:
+      - defence fund
+      - defense fund
+      - hdfc defence

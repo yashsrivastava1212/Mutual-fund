@@ -1,0 +1,469 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Compare Mutual Funds | FundWise</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&amp;family=Plus+Jakarta+Sans:wght@600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-tertiary-fixed-variant": "#005320",
+                        "inverse-surface": "#213145",
+                        "surface-container": "#e5eeff",
+                        "on-secondary-fixed": "#00174b",
+                        "surface": "#f8f9ff",
+                        "on-surface": "#0b1c30",
+                        "primary": "#000615",
+                        "secondary-fixed-dim": "#b4c5ff",
+                        "tertiary": "#000801",
+                        "inverse-primary": "#b5c7ea",
+                        "outline-variant": "#c4c6ce",
+                        "on-error-container": "#93000a",
+                        "secondary-fixed": "#dbe1ff",
+                        "on-surface-variant": "#44474d",
+                        "on-tertiary-container": "#009b44",
+                        "error-container": "#ffdad6",
+                        "secondary": "#0051d5",
+                        "primary-fixed": "#d6e3ff",
+                        "on-primary": "#ffffff",
+                        "on-secondary": "#ffffff",
+                        "surface-container-highest": "#d3e4fe",
+                        "on-background": "#0b1c30",
+                        "on-tertiary-fixed": "#002109",
+                        "on-primary-fixed-variant": "#364764",
+                        "tertiary-container": "#00250b",
+                        "surface-variant": "#d3e4fe",
+                        "secondary-container": "#316bf3",
+                        "primary-container": "#0b1f3a",
+                        "surface-container-low": "#eff4ff",
+                        "on-error": "#ffffff",
+                        "tertiary-fixed-dim": "#62df7d",
+                        "on-secondary-container": "#fefcff",
+                        "surface-bright": "#f8f9ff",
+                        "on-primary-container": "#7587a7",
+                        "surface-container-high": "#dce9ff",
+                        "background": "#f8f9ff",
+                        "outline": "#75777e",
+                        "surface-tint": "#4d5f7d",
+                        "on-tertiary": "#ffffff",
+                        "on-primary-fixed": "#071c36",
+                        "tertiary-fixed": "#7ffc97",
+                        "error": "#ba1a1a",
+                        "surface-container-lowest": "#ffffff",
+                        "primary-fixed-dim": "#b5c7ea",
+                        "inverse-on-surface": "#eaf1ff",
+                        "on-secondary-fixed-variant": "#003ea8",
+                        "surface-dim": "#cbdbf5"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "gutter": "24px",
+                        "stack-sm": "8px",
+                        "stack-md": "16px",
+                        "margin-desktop": "48px",
+                        "stack-lg": "24px",
+                        "stack-xl": "48px",
+                        "container-max": "1280px",
+                        "stack-xs": "4px",
+                        "margin-mobile": "16px"
+                    },
+                    "fontFamily": {
+                        "label-md": ["Inter"],
+                        "body-lg": ["Inter"],
+                        "body-md": ["Inter"],
+                        "display-lg": ["Plus Jakarta Sans"],
+                        "headline-md": ["Plus Jakarta Sans"],
+                        "headline-sm": ["Plus Jakarta Sans"],
+                        "display-lg-mobile": ["Plus Jakarta Sans"]
+                    },
+                    "fontSize": {
+                        "label-md": ["12px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "600"}],
+                        "body-lg": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                        "body-md": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+                        "display-lg": ["36px", {"lineHeight": "44px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                        "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                        "headline-sm": ["20px", {"lineHeight": "28px", "fontWeight": "600"}],
+                        "display-lg-mobile": ["28px", {"lineHeight": "34px", "letterSpacing": "-0.01em", "fontWeight": "700"}]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        .winning-cell {
+            background-color: #ecfdf5; /* Emerald-50 light tint */
+            font-weight: 700;
+            color: #059669; /* Emerald-600 */
+        }
+        .chart-gradient-1 { stop-color: #0051d5; stop-opacity: 0.1; }
+        .chart-gradient-2 { stop-color: #0051d5; stop-opacity: 0; }
+        .data-row:hover { background-color: #f8f9ff; }
+    </style>
+</head>
+<body class="bg-background font-body-md text-on-surface">
+<!-- TopNavBar -->
+<header class="bg-surface dark:bg-on-background border-b border-outline-variant dark:border-outline fixed top-0 w-full z-50">
+<div class="flex justify-between items-center w-full px-margin-desktop max-w-container-max mx-auto h-20">
+<div class="flex items-center gap-stack-xl">
+<span class="font-display-lg text-display-lg font-bold text-primary dark:text-primary-fixed">FundWise</span>
+<nav class="hidden md:flex items-center gap-stack-lg">
+<a class="text-on-surface-variant dark:text-surface-variant hover:text-secondary dark:hover:text-secondary-fixed-dim transition-colors duration-200 font-label-md text-label-md" href="#">Explore Funds</a>
+<a class="text-secondary dark:text-secondary-fixed-dim border-b-2 border-secondary font-bold pb-1 font-label-md text-label-md" href="#">Compare</a>
+<a class="text-on-surface-variant dark:text-surface-variant hover:text-secondary dark:hover:text-secondary-fixed-dim transition-colors duration-200 font-label-md text-label-md" href="#">Learn</a>
+<a class="text-on-surface-variant dark:text-surface-variant hover:text-secondary dark:hover:text-secondary-fixed-dim transition-colors duration-200 font-label-md text-label-md" href="#">Watchlist</a>
+</nav>
+</div>
+<div class="flex items-center gap-stack-md">
+<div class="relative hidden lg:block">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-variant" data-icon="search">search</span>
+<input class="pl-10 pr-4 py-2 bg-surface-container border border-outline-variant rounded-xl text-body-md focus:outline-none focus:ring-2 focus:ring-secondary/10 focus:border-secondary w-64" placeholder="Search funds..." type="text"/>
+</div>
+<button class="bg-primary text-on-primary px-stack-lg py-stack-md rounded-xl font-label-md text-label-md hover:scale-95 transition-all duration-100 ease-in-out">Start Investing</button>
+</div>
+</div>
+</header>
+<main class="pt-24 pb-stack-xl px-margin-desktop max-w-container-max mx-auto">
+<!-- Comparison Header -->
+<section class="mb-stack-xl">
+<div class="flex flex-col md:flex-row md:items-end justify-between gap-stack-md">
+<div>
+<h1 class="font-display-lg text-display-lg text-primary mb-2">Compare Mutual Funds</h1>
+<p class="text-on-surface-variant max-w-2xl">Contrast performance, risk ratios, and asset details to find the fund that aligns with your financial milestones.</p>
+</div>
+<div class="w-full md:w-auto">
+<div class="relative">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-secondary" data-icon="add_circle">add_circle</span>
+<input class="pl-10 pr-4 py-3 bg-white border border-outline-variant rounded-xl text-body-md focus:ring-2 focus:ring-secondary/10 focus:border-secondary w-full md:w-80 shadow-sm" placeholder="Add another fund to compare" type="text"/>
+</div>
+</div>
+</div>
+</section>
+<!-- Main Comparison Table Card -->
+<section class="bg-white border border-outline-variant rounded-xl shadow-sm overflow-hidden mb-stack-xl">
+<div class="overflow-x-auto">
+<table class="w-full text-left border-collapse">
+<thead>
+<tr class="bg-surface-container-low border-b border-outline-variant">
+<th class="p-stack-lg w-1/4 font-headline-sm text-headline-sm text-primary">Key Metrics</th>
+<th class="p-stack-lg w-1/4 text-center">
+<div class="flex flex-col items-center gap-1">
+<span class="font-bold text-primary">Parag Parikh Flexi Cap</span>
+<span class="text-label-md font-label-md text-on-surface-variant uppercase tracking-wider">Equity: Flexi Cap</span>
+</div>
+</th>
+<th class="p-stack-lg w-1/4 text-center">
+<div class="flex flex-col items-center gap-1">
+<span class="font-bold text-primary">HDFC Mid-Cap Opp.</span>
+<span class="text-label-md font-label-md text-on-surface-variant uppercase tracking-wider">Equity: Mid Cap</span>
+</div>
+</th>
+<th class="p-stack-lg w-1/4 text-center">
+<div class="flex flex-col items-center gap-1">
+<span class="font-bold text-primary">SBI Small Cap</span>
+<span class="text-label-md font-label-md text-on-surface-variant uppercase tracking-wider">Equity: Small Cap</span>
+</div>
+</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-outline-variant/50">
+<!-- Returns -->
+<tr class="data-row">
+<td class="p-stack-lg font-semibold text-on-surface-variant">1Y Return (%)</td>
+<td class="p-stack-lg text-center">28.4%</td>
+<td class="p-stack-lg text-center winning-cell">34.2%</td>
+<td class="p-stack-lg text-center">31.8%</td>
+</tr>
+<tr class="data-row">
+<td class="p-stack-lg font-semibold text-on-surface-variant">3Y Return (CAGR)</td>
+<td class="p-stack-lg text-center winning-cell">24.1%</td>
+<td class="p-stack-lg text-center">21.8%</td>
+<td class="p-stack-lg text-center">23.5%</td>
+</tr>
+<tr class="data-row">
+<td class="p-stack-lg font-semibold text-on-surface-variant">5Y Return (CAGR)</td>
+<td class="p-stack-lg text-center">19.8%</td>
+<td class="p-stack-lg text-center">18.2%</td>
+<td class="p-stack-lg text-center winning-cell">21.4%</td>
+</tr>
+<!-- Fees & Size -->
+<tr class="data-row">
+<td class="p-stack-lg font-semibold text-on-surface-variant">Expense Ratio</td>
+<td class="p-stack-lg text-center winning-cell">0.65%</td>
+<td class="p-stack-lg text-center">0.92%</td>
+<td class="p-stack-lg text-center">0.78%</td>
+</tr>
+<tr class="data-row">
+<td class="p-stack-lg font-semibold text-on-surface-variant">AUM (₹ Cr)</td>
+<td class="p-stack-lg text-center">45,210</td>
+<td class="p-stack-lg text-center">54,300</td>
+<td class="p-stack-lg text-center">21,450</td>
+</tr>
+<!-- Risk Ratios -->
+<tr class="data-row">
+<td class="p-stack-lg font-semibold text-on-surface-variant">Risk Level</td>
+<td class="p-stack-lg text-center"><span class="px-2 py-1 bg-orange-100 text-orange-800 rounded text-xs font-bold uppercase">Very High</span></td>
+<td class="p-stack-lg text-center"><span class="px-2 py-1 bg-red-100 text-red-800 rounded text-xs font-bold uppercase">Extreme</span></td>
+<td class="p-stack-lg text-center"><span class="px-2 py-1 bg-red-100 text-red-800 rounded text-xs font-bold uppercase">Extreme</span></td>
+</tr>
+<tr class="data-row">
+<td class="p-stack-lg font-semibold text-on-surface-variant">Sharpe Ratio</td>
+<td class="p-stack-lg text-center winning-cell">2.12</td>
+<td class="p-stack-lg text-center">1.85</td>
+<td class="p-stack-lg text-center">1.94</td>
+</tr>
+<!-- Rating & Actionable -->
+<tr class="data-row">
+<td class="p-stack-lg font-semibold text-on-surface-variant">Rating</td>
+<td class="p-stack-lg text-center">
+<div class="flex justify-center gap-0.5 text-amber-600">
+<span class="material-symbols-outlined" data-icon="star" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined" data-icon="star" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined" data-icon="star" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined" data-icon="star" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined" data-icon="star" style="font-variation-settings: 'FILL' 1;">star</span>
+</div>
+</td>
+<td class="p-stack-lg text-center">
+<div class="flex justify-center gap-0.5 text-amber-600">
+<span class="material-symbols-outlined" data-icon="star" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined" data-icon="star" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined" data-icon="star" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined" data-icon="star" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined" data-icon="star">star</span>
+</div>
+</td>
+<td class="p-stack-lg text-center">
+<div class="flex justify-center gap-0.5 text-amber-600">
+<span class="material-symbols-outlined" data-icon="star" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined" data-icon="star" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined" data-icon="star" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined" data-icon="star" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined" data-icon="star" style="font-variation-settings: 'FILL' 1;">star</span>
+</div>
+</td>
+</tr>
+<tr class="data-row">
+<td class="p-stack-lg font-semibold text-on-surface-variant">Min SIP (₹)</td>
+<td class="p-stack-lg text-center">₹1,000</td>
+<td class="p-stack-lg text-center">₹500</td>
+<td class="p-stack-lg text-center winning-cell">₹100</td>
+</tr>
+<tr class="data-row">
+<td class="p-stack-lg font-semibold text-on-surface-variant">Exit Load</td>
+<td class="p-stack-lg text-center">1% if &lt; 1yr</td>
+<td class="p-stack-lg text-center">1% if &lt; 1yr</td>
+<td class="p-stack-lg text-center">1% if &lt; 1yr</td>
+</tr>
+</tbody>
+<tfoot>
+<tr class="bg-surface-container-low/50">
+<td class="p-stack-lg border-t border-outline-variant"></td>
+<td class="p-stack-lg border-t border-outline-variant">
+<div class="flex flex-col gap-2">
+<button class="w-full py-2 bg-primary text-on-primary rounded-lg font-label-md hover:bg-primary-container transition-colors">Start SIP</button>
+<button class="w-full py-2 border border-primary text-primary rounded-lg font-label-md hover:bg-primary/5 transition-colors">View Details</button>
+</div>
+</td>
+<td class="p-stack-lg border-t border-outline-variant">
+<div class="flex flex-col gap-2">
+<button class="w-full py-2 bg-primary text-on-primary rounded-lg font-label-md hover:bg-primary-container transition-colors">Start SIP</button>
+<button class="w-full py-2 border border-primary text-primary rounded-lg font-label-md hover:bg-primary/5 transition-colors">View Details</button>
+</div>
+</td>
+<td class="p-stack-lg border-t border-outline-variant">
+<div class="flex flex-col gap-2">
+<button class="w-full py-2 bg-primary text-on-primary rounded-lg font-label-md hover:bg-primary-container transition-colors">Start SIP</button>
+<button class="w-full py-2 border border-primary text-primary rounded-lg font-label-md hover:bg-primary/5 transition-colors">View Details</button>
+</div>
+</td>
+</tr>
+</tfoot>
+</table>
+</div>
+</section>
+<!-- Chart Section -->
+<section class="grid grid-cols-1 lg:grid-cols-3 gap-stack-lg mb-stack-xl">
+<div class="lg:col-span-2 bg-white border border-outline-variant rounded-xl p-stack-lg shadow-sm">
+<div class="flex items-center justify-between mb-6">
+<h3 class="font-headline-sm text-headline-sm text-primary">Growth of ₹10,000</h3>
+<div class="flex gap-4">
+<div class="flex items-center gap-2">
+<span class="w-3 h-3 rounded-full bg-secondary"></span>
+<span class="text-label-md font-label-md">Parag Parikh</span>
+</div>
+<div class="flex items-center gap-2">
+<span class="w-3 h-3 rounded-full bg-tertiary-fixed-dim"></span>
+<span class="text-label-md font-label-md">HDFC</span>
+</div>
+<div class="flex items-center gap-2">
+<span class="w-3 h-3 rounded-full bg-primary-container"></span>
+<span class="text-label-md font-label-md">SBI</span>
+</div>
+</div>
+</div>
+<!-- Mock Chart Visualization -->
+<div class="relative h-64 w-full bg-slate-50/50 rounded-lg border border-dashed border-outline-variant flex items-end px-4 pb-8 overflow-hidden">
+<svg class="w-full h-full preserve-3d" preserveaspectratio="none" viewbox="0 0 1000 300">
+<!-- Background Grid Lines -->
+<line stroke="#E2E8F0" stroke-dasharray="4" stroke-width="1" x1="0" x2="1000" y1="50" y2="50"></line>
+<line stroke="#E2E8F0" stroke-dasharray="4" stroke-width="1" x1="0" x2="1000" y1="150" y2="150"></line>
+<line stroke="#E2E8F0" stroke-dasharray="4" stroke-width="1" x1="0" x2="1000" y1="250" y2="250"></line>
+<!-- Parag Parikh (Secondary Blue) -->
+<path d="M0,280 Q100,260 200,240 T400,180 T600,120 T800,80 T1000,40" fill="none" stroke="#0051d5" stroke-width="3"></path>
+<!-- HDFC (Tertiary Greenish) -->
+<path d="M0,280 Q100,270 200,260 T400,220 T600,160 T800,140 T1000,110" fill="none" stroke="#62df7d" stroke-width="3"></path>
+<!-- SBI (Primary Navy) -->
+<path d="M0,280 Q100,275 200,265 T400,240 T600,200 T800,130 T1000,70" fill="none" stroke="#0b1f3a" stroke-width="3"></path>
+</svg>
+<div class="absolute bottom-2 left-0 w-full flex justify-between px-4 text-label-md text-on-surface-variant">
+<span>2019</span>
+<span>2020</span>
+<span>2021</span>
+<span>2022</span>
+<span>2023</span>
+<span>Today</span>
+</div>
+<div class="absolute top-2 left-2 text-label-md text-on-surface-variant">Value (₹)</div>
+</div>
+</div>
+<!-- Side Insights Summary -->
+<div class="bg-primary-container text-on-primary-container rounded-xl p-stack-lg flex flex-col justify-between">
+<div>
+<h3 class="font-headline-sm text-headline-sm text-white mb-stack-md flex items-center gap-2">
+<span class="material-symbols-outlined" data-icon="lightbulb">lightbulb</span>
+                        Performance Insight
+                    </h3>
+<p class="text-on-primary-container leading-relaxed mb-6">
+                        While <strong class="text-white">SBI Small Cap</strong> has shown the highest peak volatility, it delivers the maximum wealth creation for investors with a 7+ year horizon. <strong class="text-white">Parag Parikh</strong> remains the most efficient based on its Sharpe Ratio.
+                    </p>
+</div>
+<div class="space-y-4">
+<div class="p-stack-md bg-white/10 rounded-lg border border-white/10">
+<span class="block text-label-md font-label-md text-secondary-fixed-dim uppercase tracking-widest mb-1">Top Performer</span>
+<span class="text-body-lg font-bold text-white">HDFC Mid-Cap (1Y)</span>
+</div>
+<div class="p-stack-md bg-white/10 rounded-lg border border-white/10">
+<span class="block text-label-md font-label-md text-secondary-fixed-dim uppercase tracking-widest mb-1">Least Expensive</span>
+<span class="text-body-lg font-bold text-white">Parag Parikh (0.65%)</span>
+</div>
+</div>
+</div>
+</section>
+<!-- Comparison Takeaway Cards -->
+<section class="grid grid-cols-1 md:grid-cols-3 gap-stack-lg">
+<!-- Card 1 -->
+<div class="bg-white border border-outline-variant rounded-xl p-stack-lg hover:shadow-lg transition-shadow duration-300">
+<div class="w-12 h-12 bg-secondary/10 text-secondary rounded-full flex items-center justify-center mb-stack-md">
+<span class="material-symbols-outlined" data-icon="verified_user" style="font-variation-settings: 'FILL' 1;">verified_user</span>
+</div>
+<h4 class="font-headline-sm text-headline-sm text-primary mb-2">Parag Parikh</h4>
+<p class="text-on-surface-variant mb-4">Best for long-term investors seeking a core holding with global exposure and lower risk volatility.</p>
+<div class="flex items-center gap-2 text-secondary font-semibold">
+<span class="text-label-md font-label-md">STABILITY SCORE</span>
+<span class="text-label-md font-label-md bg-secondary/10 px-2 py-0.5 rounded">9.2/10</span>
+</div>
+</div>
+<!-- Card 2 -->
+<div class="bg-white border border-outline-variant rounded-xl p-stack-lg hover:shadow-lg transition-shadow duration-300">
+<div class="w-12 h-12 bg-tertiary-fixed-dim/20 text-on-tertiary-container rounded-full flex items-center justify-center mb-stack-md">
+<span class="material-symbols-outlined" data-icon="trending_up" style="font-variation-settings: 'FILL' 1;">trending_up</span>
+</div>
+<h4 class="font-headline-sm text-headline-sm text-primary mb-2">HDFC Mid-Cap</h4>
+<p class="text-on-surface-variant mb-4">Best for balanced-risk investors looking for strong alpha generation in the mid-cap space.</p>
+<div class="flex items-center gap-2 text-on-tertiary-container font-semibold">
+<span class="text-label-md font-label-md">GROWTH ALPHA</span>
+<span class="text-label-md font-label-md bg-tertiary-fixed-dim/20 px-2 py-0.5 rounded">8.5/10</span>
+</div>
+</div>
+<!-- Card 3 -->
+<div class="bg-white border border-outline-variant rounded-xl p-stack-lg hover:shadow-lg transition-shadow duration-300">
+<div class="w-12 h-12 bg-primary-container/10 text-primary-container rounded-full flex items-center justify-center mb-stack-md">
+<span class="material-symbols-outlined" data-icon="rocket_launch" style="font-variation-settings: 'FILL' 1;">rocket_launch</span>
+</div>
+<h4 class="font-headline-sm text-headline-sm text-primary mb-2">SBI Small Cap</h4>
+<p class="text-on-surface-variant mb-4">Best for aggressive growth seekers who can handle high volatility for superior wealth creation.</p>
+<div class="flex items-center gap-2 text-primary font-semibold">
+<span class="text-label-md font-label-md">AGGRESSIVE RATING</span>
+<span class="text-label-md font-label-md bg-primary-container/10 px-2 py-0.5 rounded">HIGH</span>
+</div>
+</div>
+</section>
+</main>
+<!-- Footer -->
+<footer class="bg-surface-container-lowest dark:bg-on-background border-t border-outline-variant dark:border-outline">
+<div class="w-full py-stack-xl px-margin-desktop max-w-container-max mx-auto flex flex-col gap-stack-lg">
+<div class="flex flex-col md:flex-row justify-between items-start gap-stack-xl">
+<div class="max-w-md">
+<span class="font-headline-sm text-headline-sm font-bold text-primary dark:text-primary-fixed block mb-stack-md">FundWise</span>
+<p class="text-on-surface-variant text-body-md leading-relaxed">
+                        FundWise is your trusted partner in navigating the mutual fund landscape. We provide data-driven insights and comparison tools to help you reach your financial peak.
+                    </p>
+</div>
+<div class="grid grid-cols-2 sm:grid-cols-3 gap-stack-xl">
+<div class="flex flex-col gap-stack-sm">
+<span class="font-bold text-primary dark:text-primary-fixed mb-2">Products</span>
+<a class="text-on-surface-variant hover:text-secondary dark:hover:text-secondary-fixed-dim transition-all duration-200" href="#">Equity Funds</a>
+<a class="text-on-surface-variant hover:text-secondary dark:hover:text-secondary-fixed-dim transition-all duration-200" href="#">Debt Funds</a>
+<a class="text-on-surface-variant hover:text-secondary dark:hover:text-secondary-fixed-dim transition-all duration-200" href="#">Hybrid Funds</a>
+</div>
+<div class="flex flex-col gap-stack-sm">
+<span class="font-bold text-primary dark:text-primary-fixed mb-2">Resources</span>
+<a class="text-on-surface-variant hover:text-secondary dark:hover:text-secondary-fixed-dim transition-all duration-200" href="#">Calculators</a>
+<a class="text-on-surface-variant hover:text-secondary dark:hover:text-secondary-fixed-dim transition-all duration-200" href="#">Glossary</a>
+<a class="text-on-surface-variant hover:text-secondary dark:hover:text-secondary-fixed-dim transition-all duration-200" href="#">Blog</a>
+</div>
+<div class="flex flex-col gap-stack-sm">
+<span class="font-bold text-primary dark:text-primary-fixed mb-2">Company</span>
+<a class="text-on-surface-variant hover:text-secondary dark:hover:text-secondary-fixed-dim transition-all duration-200" href="#">About Us</a>
+<a class="text-on-surface-variant hover:text-secondary dark:hover:text-secondary-fixed-dim transition-all duration-200" href="#">Careers</a>
+<a class="text-on-surface-variant hover:text-secondary dark:hover:text-secondary-fixed-dim transition-all duration-200" href="#">Press</a>
+</div>
+</div>
+</div>
+<div class="flex flex-col gap-stack-md pt-stack-lg border-t border-outline-variant">
+<div class="flex flex-wrap gap-stack-md justify-center md:justify-start">
+<a class="text-on-surface-variant hover:text-secondary dark:hover:text-secondary-fixed-dim underline text-label-md" href="#">Sitemap</a>
+<a class="text-on-surface-variant hover:text-secondary dark:hover:text-secondary-fixed-dim underline text-label-md" href="#">Privacy Policy</a>
+<a class="text-on-surface-variant hover:text-secondary dark:hover:text-secondary-fixed-dim underline text-label-md" href="#">Terms of Service</a>
+<a class="text-on-surface-variant hover:text-secondary dark:hover:text-secondary-fixed-dim underline text-label-md" href="#">Risk Disclosure</a>
+<a class="text-on-surface-variant hover:text-secondary dark:hover:text-secondary-fixed-dim underline text-label-md" href="#">Contact Us</a>
+</div>
+<p class="text-on-surface-variant text-label-md text-center md:text-left">
+                    © 2024 FundWise Financial Services. Mutual fund investments are subject to market risks, read all scheme related documents carefully before investing.
+                </p>
+</div>
+</div>
+</footer>
+<script>
+        // Simple interactivity for comparison highlights
+        document.querySelectorAll('.data-row').forEach(row => {
+            row.addEventListener('mouseenter', () => {
+                row.querySelector('td:first-child').classList.add('text-secondary');
+            });
+            row.addEventListener('mouseleave', () => {
+                row.querySelector('td:first-child').classList.remove('text-secondary');
+            });
+        });
+
+        // Search Input focus effect
+        const searchInput = document.querySelector('input[type="text"]');
+        searchInput.addEventListener('focus', () => {
+            searchInput.parentElement.classList.add('scale-[1.02]');
+        });
+        searchInput.addEventListener('blur', () => {
+            searchInput.parentElement.classList.remove('scale-[1.02]');
+        });
+    </script>
+</body></html>

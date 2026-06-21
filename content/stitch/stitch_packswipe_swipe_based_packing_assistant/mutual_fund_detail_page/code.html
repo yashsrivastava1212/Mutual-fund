@@ -1,0 +1,600 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>FundWise | Parag Parikh Flexi Cap Fund - Direct Growth</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Plus+Jakarta+Sans:wght@600;700;800&family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&family=Plus+Jakarta+Sans:wght@100..900&display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-tertiary-fixed-variant": "#005320",
+                        "inverse-surface": "#213145",
+                        "surface-container": "#e5eeff",
+                        "on-secondary-fixed": "#00174b",
+                        "surface": "#f8f9ff",
+                        "on-surface": "#0b1c30",
+                        "primary": "#000615",
+                        "secondary-fixed-dim": "#b4c5ff",
+                        "tertiary": "#000801",
+                        "inverse-primary": "#b5c7ea",
+                        "outline-variant": "#c4c6ce",
+                        "on-error-container": "#93000a",
+                        "secondary-fixed": "#dbe1ff",
+                        "on-surface-variant": "#44474d",
+                        "on-tertiary-container": "#009b44",
+                        "error-container": "#ffdad6",
+                        "secondary": "#0051d5",
+                        "primary-fixed": "#d6e3ff",
+                        "on-primary": "#ffffff",
+                        "on-secondary": "#ffffff",
+                        "surface-container-highest": "#d3e4fe",
+                        "on-background": "#0b1c30",
+                        "on-tertiary-fixed": "#002109",
+                        "on-primary-fixed-variant": "#364764",
+                        "tertiary-container": "#00250b",
+                        "surface-variant": "#d3e4fe",
+                        "secondary-container": "#316bf3",
+                        "primary-container": "#0b1f3a",
+                        "surface-container-low": "#eff4ff",
+                        "on-error": "#ffffff",
+                        "tertiary-fixed-dim": "#62df7d",
+                        "on-secondary-container": "#fefcff",
+                        "surface-bright": "#f8f9ff",
+                        "on-primary-container": "#7587a7",
+                        "surface-container-high": "#dce9ff",
+                        "background": "#f8f9ff",
+                        "outline": "#75777e",
+                        "surface-tint": "#4d5f7d",
+                        "on-tertiary": "#ffffff",
+                        "on-primary-fixed": "#071c36",
+                        "tertiary-fixed": "#7ffc97",
+                        "error": "#ba1a1a",
+                        "surface-container-lowest": "#ffffff",
+                        "primary-fixed-dim": "#b5c7ea",
+                        "inverse-on-surface": "#eaf1ff",
+                        "on-secondary-fixed-variant": "#003ea8",
+                        "surface-dim": "#cbdbf5"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "gutter": "24px",
+                        "stack-sm": "8px",
+                        "stack-md": "16px",
+                        "margin-desktop": "48px",
+                        "stack-lg": "24px",
+                        "stack-xl": "48px",
+                        "container-max": "1280px",
+                        "stack-xs": "4px",
+                        "margin-mobile": "16px"
+                    },
+                    "fontFamily": {
+                        "label-md": ["Inter"],
+                        "body-lg": ["Inter"],
+                        "body-md": ["Inter"],
+                        "display-lg": ["Plus Jakarta Sans"],
+                        "headline-md": ["Plus Jakarta Sans"],
+                        "headline-sm": ["Plus Jakarta Sans"],
+                        "display-lg-mobile": ["Plus Jakarta Sans"]
+                    },
+                    "fontSize": {
+                        "label-md": ["12px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "600"}],
+                        "body-lg": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                        "body-md": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+                        "display-lg": ["36px", {"lineHeight": "44px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                        "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                        "headline-sm": ["20px", {"lineHeight": "28px", "fontWeight": "600"}],
+                        "display-lg-mobile": ["28px", {"lineHeight": "34px", "letterSpacing": "-0.01em", "fontWeight": "700"}]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .active-tab {
+            border-bottom: 2px solid #0051d5;
+            color: #0051d5;
+            font-weight: 700;
+        }
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 4px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: #f1f5f9;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: #cbd5e1;
+            border-radius: 10px;
+        }
+        .semi-circle-gauge {
+            position: relative;
+            width: 200px;
+            height: 100px;
+            border-radius: 100px 100px 0 0;
+            background: conic-gradient(from 180deg at 50% 100%, #10b981 0deg, #fbbf24 60deg, #f59e0b 120deg, #ef4444 180deg);
+        }
+        .gauge-needle {
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            width: 4px;
+            height: 80px;
+            background: #0b1c30;
+            transform-origin: bottom;
+            transform: translateX(-50%) rotate(45deg);
+            transition: transform 1s ease-in-out;
+        }
+    </style>
+</head>
+<body class="bg-surface font-body-md text-on-surface overflow-x-hidden">
+<!-- TopNavBar -->
+<nav class="bg-surface border-b border-outline-variant fixed top-0 z-50 w-full">
+<div class="flex justify-between items-center w-full px-margin-desktop max-w-container-max mx-auto h-20">
+<div class="flex items-center gap-stack-xl">
+<span class="font-display-lg text-display-lg font-bold text-primary">FundWise</span>
+<div class="hidden md:flex gap-stack-lg">
+<a class="text-on-surface-variant font-label-md text-label-md hover:text-secondary transition-colors duration-200" href="#">Explore Funds</a>
+<a class="text-secondary border-b-2 border-secondary font-bold pb-1 font-label-md text-label-md" href="#">Compare</a>
+<a class="text-on-surface-variant font-label-md text-label-md hover:text-secondary transition-colors duration-200" href="#">Learn</a>
+<a class="text-on-surface-variant font-label-md text-label-md hover:text-secondary transition-colors duration-200" href="#">Watchlist</a>
+</div>
+</div>
+<div class="flex items-center gap-stack-md">
+<div class="hidden md:flex items-center bg-surface-container-low border border-outline-variant px-4 py-2 rounded-full">
+<span class="material-symbols-outlined text-on-surface-variant mr-2">search</span>
+<input class="bg-transparent border-none outline-none text-body-md w-48" placeholder="Search funds..." type="text"/>
+</div>
+<button class="bg-primary-container text-on-primary font-label-md text-label-md px-6 py-2.5 rounded-xl hover:scale-95 transition-all duration-100 ease-in-out">Start Investing</button>
+</div>
+</div>
+</nav>
+<main class="mt-20 pt-stack-xl pb-stack-xl px-margin-desktop max-w-container-max mx-auto">
+<!-- Breadcrumb & Header -->
+<section class="mb-stack-lg">
+<nav class="flex text-on-surface-variant text-label-md font-label-md gap-2 mb-4">
+<a class="hover:text-secondary" href="#">Explore Funds</a>
+<span>/</span>
+<a class="hover:text-secondary" href="#">Equity</a>
+<span>/</span>
+<span class="text-on-surface font-bold">Flexi Cap</span>
+</nav>
+<div class="flex flex-col md:flex-row justify-between items-start md:items-end gap-stack-md">
+<div class="flex-1">
+<div class="flex items-center gap-stack-md mb-2">
+<img class="w-12 h-12 object-contain bg-white p-2 rounded-lg border border-outline-variant" data-alt="Official logo of Parag Parikh Financial Advisory Services, minimalist blue and white professional design." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAisEdLFLTlPhPhksqhLb5ObMZgiHaBejangm0mBo54WrmHWiRzz-_aF_ZKv19dg-6LtRLgOaNuEQhcdw6jmpaBTWKlzugUj6KS1DSkU5eeohoLCiVx0p7Ynp68-a9TQ3zHGkq2ikmAWyewNjt6v8HUJ5Js0UAuZKkre9Xy7aXVX1yfSY7GAjc8UfH2D7ioE02CTxiBsygePyoRvwSPqx5bbrU9v8LD2MkoOTPKvbjQVOBbzZFLx35_1F33GaO858mu76kEGC4cYi0"/>
+<div class="flex gap-2">
+<span class="bg-surface-container text-secondary px-3 py-0.5 rounded-full text-label-md font-label-md">Flexi Cap</span>
+<div class="flex text-amber-600">
+<span class="material-symbols-outlined text-sm" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-sm" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-sm" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-sm" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-sm" style="font-variation-settings: 'FILL' 1;">star</span>
+</div>
+</div>
+</div>
+<div class="flex items-center gap-stack-md">
+<h1 class="font-display-lg text-display-lg text-primary">Parag Parikh Flexi Cap Fund - Direct Growth</h1>
+<button class="p-2 rounded-full hover:bg-surface-container transition-colors">
+<span class="material-symbols-outlined text-on-surface-variant">favorite</span>
+</button>
+</div>
+<div class="mt-4 flex items-baseline gap-stack-sm">
+<span class="text-headline-md font-headline-md text-primary">₹92.45</span>
+<span class="text-on-tertiary-container font-label-md text-label-md flex items-center">
+<span class="material-symbols-outlined text-sm">trending_up</span>
+                            +1.24% (+₹1.13) Today
+                        </span>
+<span class="text-on-surface-variant text-label-md font-label-md ml-2">NAV as of 24 May 2024</span>
+</div>
+</div>
+<div class="flex flex-col gap-3 min-w-[280px]">
+<div class="flex gap-3">
+<button class="flex-1 bg-primary-container text-on-primary py-3 px-6 rounded-xl font-label-md text-label-md hover:shadow-lg transition-all">Start SIP</button>
+<button class="flex-1 border border-primary-container text-primary-container py-3 px-6 rounded-xl font-label-md text-label-md hover:bg-surface-container-low transition-all">Invest Lumpsum</button>
+</div>
+<p class="text-[10px] text-on-surface-variant italic text-center">Mutual fund investments are subject to market risks.</p>
+</div>
+</div>
+</section>
+<!-- Performance Highlights -->
+<section class="grid grid-cols-2 md:grid-cols-6 gap-stack-md mb-stack-xl">
+<div class="bg-surface-container-lowest border border-outline-variant p-4 rounded-xl flex flex-col items-center">
+<span class="text-on-surface-variant text-label-md font-label-md mb-1">1Y Return</span>
+<span class="text-on-tertiary-container font-bold text-headline-sm">18.4%</span>
+</div>
+<div class="bg-surface-container-lowest border border-outline-variant p-4 rounded-xl flex flex-col items-center">
+<span class="text-on-surface-variant text-label-md font-label-md mb-1">3Y Return</span>
+<span class="text-on-tertiary-container font-bold text-headline-sm">21.8%</span>
+</div>
+<div class="bg-surface-container-lowest border border-outline-variant p-4 rounded-xl flex flex-col items-center">
+<span class="text-on-surface-variant text-label-md font-label-md mb-1">5Y Return</span>
+<span class="text-on-tertiary-container font-bold text-headline-sm">19.2%</span>
+</div>
+<div class="bg-surface-container-lowest border border-outline-variant p-4 rounded-xl flex flex-col items-center">
+<span class="text-on-surface-variant text-label-md font-label-md mb-1">Expense Ratio</span>
+<span class="text-primary font-bold text-headline-sm">0.63%</span>
+</div>
+<div class="bg-surface-container-lowest border border-outline-variant p-4 rounded-xl flex flex-col items-center">
+<span class="text-on-surface-variant text-label-md font-label-md mb-1">AUM</span>
+<span class="text-primary font-bold text-headline-sm">₹1.05L Cr</span>
+</div>
+<div class="bg-surface-container-lowest border border-outline-variant p-4 rounded-xl flex flex-col items-center">
+<span class="text-on-surface-variant text-label-md font-label-md mb-1">Risk</span>
+<span class="text-error font-bold text-label-md">Moderately High</span>
+</div>
+</section>
+<!-- Main Content Area (8:4) -->
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-stack-xl">
+<!-- Left Column: Tabs and Main Charts -->
+<div class="lg:col-span-8 space-y-stack-xl">
+<!-- Tabs Navigation -->
+<div class="border-b border-outline-variant">
+<div class="flex gap-stack-lg">
+<button class="active-tab py-3 px-1 text-label-md font-label-md">Overview</button>
+<button class="text-on-surface-variant hover:text-secondary py-3 px-1 text-label-md font-label-md transition-all">Performance</button>
+<button class="text-on-surface-variant hover:text-secondary py-3 px-1 text-label-md font-label-md transition-all">Portfolio</button>
+<button class="text-on-surface-variant hover:text-secondary py-3 px-1 text-label-md font-label-md transition-all">Risk</button>
+<button class="text-on-surface-variant hover:text-secondary py-3 px-1 text-label-md font-label-md transition-all">Fund Manager</button>
+</div>
+</div>
+<!-- Overview Section -->
+<div class="space-y-stack-lg">
+<div>
+<h2 class="text-headline-sm font-headline-sm text-primary mb-3">Fund Objective</h2>
+<p class="text-body-lg text-on-surface-variant leading-relaxed">
+                            To seek to generate long-term capital growth from an actively managed portfolio primarily of Equity and Equity related securities. The Scheme shall invest in Indian equities, foreign equities and related instruments and debt securities.
+                        </p>
+</div>
+<!-- Performance Chart -->
+<div class="bg-surface-container-lowest border border-outline-variant p-stack-lg rounded-xl">
+<div class="flex justify-between items-center mb-6">
+<h3 class="text-headline-sm font-headline-sm">NAV Comparison (5Y)</h3>
+<div class="flex gap-4">
+<div class="flex items-center gap-2">
+<span class="w-3 h-3 bg-secondary rounded-full"></span>
+<span class="text-label-md font-label-md text-on-surface-variant">Fund</span>
+</div>
+<div class="flex items-center gap-2">
+<span class="w-3 h-3 bg-outline rounded-full"></span>
+<span class="text-label-md font-label-md text-on-surface-variant">Nifty 500</span>
+</div>
+</div>
+</div>
+<div class="h-64 w-full flex items-end justify-between gap-1">
+<!-- Simplified CSS Line Chart Representation -->
+<div class="relative w-full h-full bg-[radial-gradient(circle_at_1px_1px,#e2e8f0_1px,transparent_0)] bg-[size:20px_20px]">
+<svg class="w-full h-full overflow-visible" preserveaspectratio="none">
+<!-- Benchmark Path -->
+<path d="M0,150 Q100,140 200,160 T400,120 T600,140 T800,100" fill="none" stroke="#94a3b8" stroke-width="2"></path>
+<!-- Fund Path -->
+<path d="M0,150 Q100,130 200,110 T400,70 T600,60 T800,30" fill="none" stroke="#0051d5" stroke-width="3"></path>
+<lineargradient id="fund-gradient" x1="0" x2="0" y1="0" y2="1">
+<stop offset="0%" stop-color="#0051d5" stop-opacity="0.2"></stop>
+<stop offset="100%" stop-color="#0051d5" stop-opacity="0"></stop>
+</lineargradient>
+<path d="M0,150 Q100,130 200,110 T400,70 T600,60 T800,30 V200 H0 Z" fill="url(#fund-gradient)"></path>
+</svg>
+</div>
+</div>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-stack-lg">
+<!-- Why Consider -->
+<div class="bg-surface-container-low border border-outline-variant p-stack-lg rounded-xl">
+<h3 class="text-headline-sm font-headline-sm mb-4">Why consider this fund?</h3>
+<ul class="space-y-3">
+<li class="flex gap-3 items-start">
+<span class="material-symbols-outlined text-on-tertiary-container">check_circle</span>
+<span class="text-body-md">Consistent alpha generation over its benchmark Nifty 500 across various market cycles.</span>
+</li>
+<li class="flex gap-3 items-start">
+<span class="material-symbols-outlined text-on-tertiary-container">check_circle</span>
+<span class="text-body-md">Unique global exposure with up to 35% allocation in international stocks like Alphabet & Microsoft.</span>
+</li>
+<li class="flex gap-3 items-start">
+<span class="material-symbols-outlined text-on-tertiary-container">check_circle</span>
+<span class="text-body-md">Low expense ratio of 0.63% compared to category average of 1.2%.</span>
+</li>
+</ul>
+</div>
+<!-- Risk-o-meter -->
+<div class="bg-surface-container-lowest border border-outline-variant p-stack-lg rounded-xl flex flex-col items-center">
+<h3 class="text-headline-sm font-headline-sm mb-6">Risk-o-meter</h3>
+<div class="semi-circle-gauge">
+<div class="gauge-needle"></div>
+<div class="absolute bottom-0 left-1/2 -translate-x-1/2 w-8 h-8 bg-surface-container-lowest border-4 border-primary rounded-full z-10"></div>
+</div>
+<div class="mt-4 text-center">
+<span class="text-error font-bold uppercase tracking-wider text-label-md">Moderately High</span>
+<p class="text-on-surface-variant text-[10px] mt-1">Investors understand that their principal will be at moderately high risk.</p>
+</div>
+</div>
+</div>
+</div>
+<!-- Portfolio Preview Section -->
+<section class="space-y-stack-lg">
+<div class="flex justify-between items-center">
+<h2 class="text-headline-sm font-headline-sm text-primary">Portfolio Composition</h2>
+<button class="text-secondary font-label-md text-label-md flex items-center gap-1">
+                            Full Portfolio <span class="material-symbols-outlined text-sm">arrow_forward</span>
+</button>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-12 gap-stack-lg">
+<div class="md:col-span-7 bg-surface-container-lowest border border-outline-variant rounded-xl overflow-hidden">
+<table class="w-full text-left">
+<thead class="bg-surface-container-low border-b border-outline-variant">
+<tr>
+<th class="px-4 py-3 font-label-md text-label-md text-on-surface-variant">Holding</th>
+<th class="px-4 py-3 font-label-md text-label-md text-on-surface-variant">Sector</th>
+<th class="px-4 py-3 font-label-md text-label-md text-on-surface-variant">Allocation</th>
+<th class="px-4 py-3 font-label-md text-label-md text-on-surface-variant">1Y Chg</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-outline-variant">
+<tr class="hover:bg-surface-container-low transition-colors">
+<td class="px-4 py-4 text-body-md font-semibold">HDFC Bank Ltd.</td>
+<td class="px-4 py-4 text-body-md text-on-surface-variant">Financial</td>
+<td class="px-4 py-4 text-body-md">8.42%</td>
+<td class="px-4 py-4 text-body-md text-on-tertiary-container">+12.4%</td>
+</tr>
+<tr class="hover:bg-surface-container-low transition-colors">
+<td class="px-4 py-4 text-body-md font-semibold">Alphabet Inc. (USA)</td>
+<td class="px-4 py-4 text-body-md text-on-surface-variant">Technology</td>
+<td class="px-4 py-4 text-body-md">7.15%</td>
+<td class="px-4 py-4 text-body-md text-on-tertiary-container">+42.1%</td>
+</tr>
+<tr class="hover:bg-surface-container-low transition-colors">
+<td class="px-4 py-4 text-body-md font-semibold">Bajaj Holdings</td>
+<td class="px-4 py-4 text-body-md text-on-surface-variant">Financial</td>
+<td class="px-4 py-4 text-body-md">6.88%</td>
+<td class="px-4 py-4 text-body-md text-on-tertiary-container">+18.2%</td>
+</tr>
+<tr class="hover:bg-surface-container-low transition-colors">
+<td class="px-4 py-4 text-body-md font-semibold">Microsoft Corp. (USA)</td>
+<td class="px-4 py-4 text-body-md text-on-surface-variant">Technology</td>
+<td class="px-4 py-4 text-body-md">5.20%</td>
+<td class="px-4 py-4 text-body-md text-on-tertiary-container">+28.5%</td>
+</tr>
+<tr class="hover:bg-surface-container-low transition-colors">
+<td class="px-4 py-4 text-body-md font-semibold">ITC Ltd.</td>
+<td class="px-4 py-4 text-body-md text-on-surface-variant">FMCG</td>
+<td class="px-4 py-4 text-body-md">4.95%</td>
+<td class="px-4 py-4 text-body-md text-error">-2.1%</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="md:col-span-5 space-y-stack-lg">
+<div class="bg-surface-container-lowest border border-outline-variant p-stack-md rounded-xl">
+<h4 class="text-label-md font-bold mb-4 uppercase text-on-surface-variant">Sector Allocation</h4>
+<div class="flex items-center gap-4">
+<div class="w-32 h-32 rounded-full border-[16px] border-primary-container relative">
+<div class="absolute inset-0 rounded-full border-[16px] border-secondary border-t-transparent border-l-transparent" style="transform: rotate(45deg);"></div>
+<div class="absolute inset-0 flex items-center justify-center">
+<span class="text-label-md font-bold">Equity</span>
+</div>
+</div>
+<div class="flex-1 space-y-2">
+<div class="flex justify-between items-center text-label-md">
+<span class="flex items-center gap-1"><span class="w-2 h-2 bg-primary-container rounded-full"></span> Financial</span>
+<span class="font-bold">34.2%</span>
+</div>
+<div class="flex justify-between items-center text-label-md">
+<span class="flex items-center gap-1"><span class="w-2 h-2 bg-secondary rounded-full"></span> Tech</span>
+<span class="font-bold">28.1%</span>
+</div>
+<div class="flex justify-between items-center text-label-md">
+<span class="flex items-center gap-1"><span class="w-2 h-2 bg-on-tertiary-fixed-variant rounded-full"></span> FMCG</span>
+<span class="font-bold">12.5%</span>
+</div>
+</div>
+</div>
+</div>
+<div class="bg-surface-container-lowest border border-outline-variant p-stack-md rounded-xl">
+<h4 class="text-label-md font-bold mb-4 uppercase text-on-surface-variant">Market Cap</h4>
+<div class="space-y-3">
+<div>
+<div class="flex justify-between text-label-md mb-1">
+<span>Large Cap</span>
+<span>68.4%</span>
+</div>
+<div class="w-full bg-surface-container h-2 rounded-full">
+<div class="bg-secondary h-full rounded-full" style="width: 68.4%"></div>
+</div>
+</div>
+<div>
+<div class="flex justify-between text-label-md mb-1">
+<span>Mid Cap</span>
+<span>21.2%</span>
+</div>
+<div class="w-full bg-surface-container h-2 rounded-full">
+<div class="bg-on-tertiary-container h-full rounded-full" style="width: 21.2%"></div>
+</div>
+</div>
+<div>
+<div class="flex justify-between text-label-md mb-1">
+<span>Small Cap</span>
+<span>10.4%</span>
+</div>
+<div class="w-full bg-surface-container h-2 rounded-full">
+<div class="bg-on-primary-container h-full rounded-full" style="width: 10.4%"></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Fund Manager -->
+<section class="bg-surface-container-lowest border border-outline-variant p-stack-lg rounded-xl">
+<div class="flex flex-col md:flex-row gap-stack-lg">
+<img class="w-32 h-32 rounded-xl object-cover" data-alt="Professional headshot of a financial fund manager, wearing a charcoal suit, smiling confidently, high-end corporate studio lighting, minimalist gray background." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDzPu3seV_luQ55yvwOMe8omClEvt-GE9-EnCvAWAj0feIhLk4-w7flHg3Aj3gJVzcDqR7CSWP20Pie-3g39AIHRITsJJiQPNXsrcNuBc2OrfBF2JCJXAZ8x-jbEbN7w7mn3RPZfTeaGeIgyblEIr5iKqZHfbkED5aJqbOkipP5p4zyJVPlBXWPN46P6lxvYUrIw71K03cOUipvM81nkDmCTiITwhBp8B3OpqFt4MDgV97aJrfzkeWOIRM3647cyJWhWsKdtxd4-3E"/>
+<div class="flex-1">
+<div class="flex justify-between items-start">
+<div>
+<h3 class="text-headline-sm font-headline-sm">Rajeev Thakkar</h3>
+<p class="text-on-surface-variant text-body-md mb-2">Chief Investment Officer & Fund Manager</p>
+<div class="flex gap-4 text-label-md mb-4">
+<span class="bg-surface-container-high px-2 py-1 rounded">Exp: 20+ Years</span>
+<span class="bg-surface-container-high px-2 py-1 rounded">Funds: 4</span>
+</div>
+</div>
+<button class="text-secondary border border-secondary px-4 py-2 rounded-lg text-label-md font-bold hover:bg-secondary hover:text-white transition-all">View All Funds</button>
+</div>
+<div class="bg-surface-container-low p-4 rounded-lg italic text-body-md text-on-surface border-l-4 border-secondary">
+                                "Our investment philosophy is simple: we buy businesses we understand, managed by people we trust, at a price that offers a margin of safety."
+                            </div>
+</div>
+</div>
+</section>
+</div>
+<!-- Right Column: SIP Calculator Widget -->
+<div class="lg:col-span-4">
+<div class="sticky top-28 space-y-stack-lg">
+<div class="bg-surface-container-lowest border border-outline-variant p-stack-lg rounded-xl shadow-sm">
+<h3 class="text-headline-sm font-headline-sm text-primary mb-6">SIP Calculator</h3>
+<div class="space-y-6">
+<div>
+<div class="flex justify-between mb-2">
+<label class="text-label-md font-label-md text-on-surface-variant">Monthly Investment</label>
+<span class="text-label-md font-bold text-primary">₹5,000</span>
+</div>
+<input class="w-full accent-secondary" max="100000" min="500" step="500" type="range" value="5000"/>
+</div>
+<div>
+<div class="flex justify-between mb-2">
+<label class="text-label-md font-label-md text-on-surface-variant">Duration (Years)</label>
+<span class="text-label-md font-bold text-primary">10Y</span>
+</div>
+<input class="w-full accent-secondary" max="30" min="1" step="1" type="range" value="10"/>
+</div>
+<div>
+<div class="flex justify-between mb-2">
+<label class="text-label-md font-label-md text-on-surface-variant">Expected Return (%)</label>
+<span class="text-label-md font-bold text-primary">15%</span>
+</div>
+<input class="w-full accent-secondary" max="30" min="5" step="1" type="range" value="15"/>
+</div>
+<div class="p-4 bg-surface-container rounded-xl">
+<span class="text-on-surface-variant text-label-md font-label-md block mb-1">Estimated Maturity Value</span>
+<span class="text-headline-md font-headline-md text-primary">₹13,93,286</span>
+<div class="mt-2 text-[10px] text-on-surface-variant flex justify-between">
+<span>Total Invested: ₹6,00,000</span>
+<span class="text-on-tertiary-container">Gains: ₹7,93,286</span>
+</div>
+</div>
+<button class="w-full bg-primary-container text-on-primary py-4 rounded-xl font-headline-sm hover:shadow-xl transition-all">Invest Now</button>
+</div>
+</div>
+<!-- Comparison Quick Card -->
+<div class="bg-surface-container-lowest border border-outline-variant p-stack-lg rounded-xl">
+<h4 class="text-label-md font-bold text-on-surface-variant uppercase mb-4">Similar Funds</h4>
+<div class="space-y-4">
+<div class="flex items-center justify-between group cursor-pointer">
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 bg-surface-container rounded flex items-center justify-center font-bold text-[10px]">QM</div>
+<div>
+<div class="text-label-md font-bold">Quant Flexi Cap</div>
+<div class="text-[10px] text-on-tertiary-container">31.2% (3Y)</div>
+</div>
+</div>
+<span class="material-symbols-outlined text-outline group-hover:text-secondary transition-colors">chevron_right</span>
+</div>
+<div class="flex items-center justify-between group cursor-pointer">
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 bg-surface-container rounded flex items-center justify-center font-bold text-[10px]">HDFC</div>
+<div>
+<div class="text-label-md font-bold">HDFC Flexi Cap</div>
+<div class="text-[10px] text-on-tertiary-container">24.5% (3Y)</div>
+</div>
+</div>
+<span class="material-symbols-outlined text-outline group-hover:text-secondary transition-colors">chevron_right</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+<!-- Footer -->
+<footer class="bg-surface-container-lowest border-t border-outline-variant mt-stack-xl">
+<div class="w-full py-stack-xl px-margin-desktop max-w-container-max mx-auto flex flex-col gap-stack-lg">
+<div class="flex flex-col md:flex-row justify-between items-start gap-stack-lg">
+<div class="max-w-md">
+<span class="font-headline-sm text-headline-sm font-bold text-primary mb-4 block">FundWise</span>
+<p class="text-body-md text-on-surface-variant">Providing institutional-grade financial analysis and mutual fund insights for individual investors. Simple, transparent, and research-backed.</p>
+</div>
+<div class="grid grid-cols-2 md:grid-cols-3 gap-stack-xl">
+<div class="flex flex-col gap-2">
+<span class="text-label-md font-bold uppercase text-primary mb-2">Company</span>
+<a class="text-on-surface-variant hover:text-secondary underline decoration-transparent hover:decoration-secondary transition-all" href="#">About Us</a>
+<a class="text-on-surface-variant hover:text-secondary underline decoration-transparent hover:decoration-secondary transition-all" href="#">Careers</a>
+<a class="text-on-surface-variant hover:text-secondary underline decoration-transparent hover:decoration-secondary transition-all" href="#">Press</a>
+</div>
+<div class="flex flex-col gap-2">
+<span class="text-label-md font-bold uppercase text-primary mb-2">Legal</span>
+<a class="text-on-surface-variant hover:text-secondary underline decoration-transparent hover:decoration-secondary transition-all" href="#">Privacy Policy</a>
+<a class="text-on-surface-variant hover:text-secondary underline decoration-transparent hover:decoration-secondary transition-all" href="#">Terms of Service</a>
+<a class="text-on-surface-variant hover:text-secondary underline decoration-transparent hover:decoration-secondary transition-all" href="#">Risk Disclosure</a>
+</div>
+<div class="flex flex-col gap-2">
+<span class="text-label-md font-bold uppercase text-primary mb-2">Contact</span>
+<a class="text-on-surface-variant hover:text-secondary underline decoration-transparent hover:decoration-secondary transition-all" href="#">Support</a>
+<a class="text-on-surface-variant hover:text-secondary underline decoration-transparent hover:decoration-secondary transition-all" href="#">Help Center</a>
+<a class="text-on-surface-variant hover:text-secondary underline decoration-transparent hover:decoration-secondary transition-all" href="#">Security</a>
+</div>
+</div>
+</div>
+<div class="border-t border-outline-variant pt-stack-lg flex flex-col gap-4">
+<p class="text-label-md text-on-surface-variant leading-relaxed">
+                    © 2024 FundWise Financial Services. Mutual fund investments are subject to market risks, read all scheme related documents carefully before investing. SEBI Registration No: INA000012345.
+                </p>
+<div class="flex gap-4">
+<a class="text-on-surface-variant hover:text-secondary" href="#"><span class="material-symbols-outlined">public</span></a>
+<a class="text-on-surface-variant hover:text-secondary" href="#"><span class="material-symbols-outlined">mail</span></a>
+<a class="text-on-surface-variant hover:text-secondary" href="#"><span class="material-symbols-outlined">description</span></a>
+</div>
+</div>
+</div>
+</footer>
+<script>
+        // Simple micro-interaction for the range inputs to update the "estimated maturity value" visually
+        const inputs = document.querySelectorAll('input[type="range"]');
+        inputs.forEach(input => {
+            input.addEventListener('input', (e) => {
+                // In a real app, this would trigger a complex SIP calculation.
+                // For the UI demo, we'll just add a slight flicker to indicate update
+                const result = document.querySelector('.text-headline-md');
+                result.classList.add('opacity-50');
+                setTimeout(() => result.classList.remove('opacity-50'), 100);
+            });
+        });
+
+        // Gauge needle animation on scroll
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const needle = entry.target.querySelector('.gauge-needle');
+                    if (needle) needle.style.transform = 'translateX(-50%) rotate(55deg)';
+                }
+            });
+        }, { threshold: 0.5 });
+
+        const gauge = document.querySelector('.semi-circle-gauge');
+        if (gauge) observer.observe(gauge.parentElement);
+    </script>
+</body></html>

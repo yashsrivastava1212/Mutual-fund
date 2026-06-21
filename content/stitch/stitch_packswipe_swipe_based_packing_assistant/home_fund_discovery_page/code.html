@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>FundWise | Find Mutual Funds that Match Your Goals</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&family=Inter:wght@400;500;600&family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&family=Plus+Jakarta+Sans:wght@100..900&display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "on-tertiary-fixed-variant": "#005320",
+                    "inverse-surface": "#213145",
+                    "surface-container": "#e5eeff",
+                    "on-secondary-fixed": "#00174b",
+                    "surface": "#f8f9ff",
+                    "on-surface": "#0b1c30",
+                    "primary": "#000615",
+                    "secondary-fixed-dim": "#b4c5ff",
+                    "tertiary": "#000801",
+                    "inverse-primary": "#b5c7ea",
+                    "outline-variant": "#c4c6ce",
+                    "on-error-container": "#93000a",
+                    "secondary-fixed": "#dbe1ff",
+                    "on-surface-variant": "#44474d",
+                    "on-tertiary-container": "#009b44",
+                    "error-container": "#ffdad6",
+                    "secondary": "#0051d5",
+                    "primary-fixed": "#d6e3ff",
+                    "on-primary": "#ffffff",
+                    "on-secondary": "#ffffff",
+                    "surface-container-highest": "#d3e4fe",
+                    "on-background": "#0b1c30",
+                    "on-tertiary-fixed": "#002109",
+                    "on-primary-fixed-variant": "#364764",
+                    "tertiary-container": "#00250b",
+                    "surface-variant": "#d3e4fe",
+                    "secondary-container": "#316bf3",
+                    "primary-container": "#0b1f3a",
+                    "surface-container-low": "#eff4ff",
+                    "on-error": "#ffffff",
+                    "tertiary-fixed-dim": "#62df7d",
+                    "on-secondary-container": "#fefcff",
+                    "surface-bright": "#f8f9ff",
+                    "on-primary-container": "#7587a7",
+                    "surface-container-high": "#dce9ff",
+                    "background": "#f8f9ff",
+                    "outline": "#75777e",
+                    "surface-tint": "#4d5f7d",
+                    "on-tertiary": "#ffffff",
+                    "on-primary-fixed": "#071c36",
+                    "tertiary-fixed": "#7ffc97",
+                    "error": "#ba1a1a",
+                    "surface-container-lowest": "#ffffff",
+                    "primary-fixed-dim": "#b5c7ea",
+                    "inverse-on-surface": "#eaf1ff",
+                    "on-secondary-fixed-variant": "#003ea8",
+                    "surface-dim": "#cbdbf5"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "gutter": "24px",
+                    "stack-sm": "8px",
+                    "stack-md": "16px",
+                    "margin-desktop": "48px",
+                    "stack-lg": "24px",
+                    "stack-xl": "48px",
+                    "container-max": "1280px",
+                    "stack-xs": "4px",
+                    "margin-mobile": "16px"
+            },
+            "fontFamily": {
+                    "label-md": ["Inter"],
+                    "body-lg": ["Inter"],
+                    "body-md": ["Inter"],
+                    "display-lg": ["Plus Jakarta Sans"],
+                    "headline-md": ["Plus Jakarta Sans"],
+                    "headline-sm": ["Plus Jakarta Sans"],
+                    "display-lg-mobile": ["Plus Jakarta Sans"]
+            },
+            "fontSize": {
+                    "label-md": ["12px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "600"}],
+                    "body-lg": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                    "body-md": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+                    "display-lg": ["36px", {"lineHeight": "44px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                    "headline-sm": ["20px", {"lineHeight": "28px", "fontWeight": "600"}],
+                    "display-lg-mobile": ["28px", {"lineHeight": "34px", "letterSpacing": "-0.01em", "fontWeight": "700"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        body { background-color: #F8FAFC; color: #0B1C30; font-family: 'Inter', sans-serif; }
+        .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24; }
+        .hero-gradient { background: radial-gradient(circle at 50% -20%, #eff4ff 0%, #f8f9ff 100%); }
+        .card-shadow { box-shadow: 0px 4px 20px rgba(11, 31, 58, 0.05); }
+        .performance-green { color: #16A34A; }
+    </style>
+</head>
+<body class="bg-background text-on-surface">
+<!-- TopNavBar -->
+<header class="bg-surface border-b border-outline-variant docked full-width top-0 sticky z-50">
+<nav class="flex justify-between items-center w-full px-margin-desktop max-w-container-max mx-auto h-20">
+<div class="flex items-center gap-stack-xl">
+<span class="font-display-lg text-display-lg font-bold text-primary">FundWise</span>
+<div class="hidden md:flex gap-stack-lg">
+<a class="font-label-md text-label-md text-secondary border-b-2 border-secondary font-bold pb-1" href="#">Explore Funds</a>
+<a class="font-label-md text-label-md text-on-surface-variant hover:text-secondary transition-colors duration-200" href="#">Compare</a>
+<a class="font-label-md text-label-md text-on-surface-variant hover:text-secondary transition-colors duration-200" href="#">Learn</a>
+<a class="font-label-md text-label-md text-on-surface-variant hover:text-secondary transition-colors duration-200" href="#">Watchlist</a>
+</div>
+</div>
+<div class="flex items-center gap-stack-md">
+<button class="material-symbols-outlined text-on-surface-variant hover:text-primary transition-colors">search</button>
+<button class="bg-primary-container text-on-primary px-stack-lg py-stack-sm rounded-xl font-label-md hover:scale-95 transition-transform duration-100 ease-in-out">Start Investing</button>
+</div>
+</nav>
+</header>
+<main>
+<!-- Hero Section -->
+<section class="hero-gradient pt-stack-xl pb-stack-xl px-margin-mobile md:px-margin-desktop">
+<div class="max-w-[800px] mx-auto text-center flex flex-col gap-stack-md items-center">
+<h1 class="font-display-lg text-display-lg-mobile md:text-display-lg text-primary">Find mutual funds that match your goals.</h1>
+<p class="font-body-lg text-body-lg text-on-surface-variant max-w-[600px]">Compare returns, risk, fees and portfolio quality in one place with professional-grade analysis tools.</p>
+<div class="w-full mt-stack-lg relative group">
+<div class="flex items-center bg-surface-container-lowest border border-outline-variant rounded-full px-stack-lg py-4 focus-within:ring-2 focus-within:ring-secondary/10 focus-within:border-secondary transition-all">
+<span class="material-symbols-outlined text-outline">search</span>
+<input class="bg-transparent border-none focus:ring-0 w-full text-body-lg ml-stack-sm placeholder:text-outline-variant" placeholder="Search by fund name, AMC or category" type="text"/>
+</div>
+</div>
+<div class="flex flex-wrap justify-center gap-stack-sm mt-stack-sm">
+<span class="text-label-md text-on-surface-variant">Suggestions:</span>
+<button class="text-label-md text-secondary hover:underline">Parag Parikh Flexi Cap</button>
+<button class="text-label-md text-secondary hover:underline">HDFC Mid-Cap</button>
+<button class="text-label-md text-secondary hover:underline">SBI Small Cap</button>
+</div>
+</div>
+</section>
+<!-- Filter Section -->
+<section class="max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop py-stack-lg overflow-x-auto">
+<div class="flex gap-stack-md whitespace-nowrap scrollbar-hide">
+<button class="px-stack-lg py-2 rounded-full border border-primary-container bg-primary-container text-on-primary font-label-md">All Funds</button>
+<button class="px-stack-lg py-2 rounded-full border border-outline-variant hover:border-secondary hover:text-secondary bg-surface-container-lowest font-label-md transition-colors">Equity</button>
+<button class="px-stack-lg py-2 rounded-full border border-outline-variant hover:border-secondary hover:text-secondary bg-surface-container-lowest font-label-md transition-colors">Debt</button>
+<button class="px-stack-lg py-2 rounded-full border border-outline-variant hover:border-secondary hover:text-secondary bg-surface-container-lowest font-label-md transition-colors">Hybrid</button>
+<button class="px-stack-lg py-2 rounded-full border border-outline-variant hover:border-secondary hover:text-secondary bg-surface-container-lowest font-label-md transition-colors">ELSS</button>
+<button class="px-stack-lg py-2 rounded-full border border-outline-variant hover:border-secondary hover:text-secondary bg-surface-container-lowest font-label-md transition-colors">Index Funds</button>
+<button class="px-stack-lg py-2 rounded-full border border-outline-variant hover:border-secondary hover:text-secondary bg-surface-container-lowest font-label-md transition-colors">Low Risk</button>
+<button class="px-stack-lg py-2 rounded-full border border-outline-variant hover:border-secondary hover:text-secondary bg-surface-container-lowest font-label-md transition-colors">High Return</button>
+</div>
+</section>
+<!-- Trending Funds -->
+<section class="max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop py-stack-xl">
+<div class="flex justify-between items-end mb-stack-lg">
+<h2 class="font-headline-md text-headline-md text-primary">Trending Funds</h2>
+<a class="text-secondary font-label-md flex items-center gap-stack-xs hover:underline" href="#">View All <span class="material-symbols-outlined text-[16px]">arrow_forward</span></a>
+</div>
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-gutter">
+<!-- Card 1 -->
+<div class="bg-surface-container-lowest border border-outline-variant rounded-xl p-stack-lg card-shadow hover:scale-[1.02] transition-transform duration-200">
+<div class="flex items-start justify-between mb-stack-md">
+<div class="w-12 h-12 rounded-lg bg-surface-container flex items-center justify-center">
+<span class="material-symbols-outlined text-secondary">show_chart</span>
+</div>
+<div class="flex items-center gap-stack-xs text-amber-600">
+<span class="material-symbols-outlined text-[16px]" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="font-label-md">4.8</span>
+</div>
+</div>
+<h3 class="font-headline-sm text-headline-sm mb-1">Quant Small Cap Fund</h3>
+<p class="font-body-md text-on-surface-variant mb-stack-lg">Small Cap • Equity</p>
+<div class="grid grid-cols-2 gap-stack-md mb-stack-lg">
+<div>
+<span class="block font-label-md text-on-surface-variant uppercase text-[10px]">3Y Returns</span>
+<span class="font-headline-sm performance-green">34.2%</span>
+</div>
+<div>
+<span class="block font-label-md text-on-surface-variant uppercase text-[10px]">Risk</span>
+<span class="font-label-md text-primary">Very High</span>
+</div>
+</div>
+<div class="flex items-center justify-between pt-stack-md border-t border-outline-variant">
+<span class="text-body-md text-on-surface-variant">Exp. Ratio: 0.77%</span>
+<a class="text-secondary font-label-md hover:underline font-bold" href="#">Details</a>
+</div>
+</div>
+<!-- Card 2 -->
+<div class="bg-surface-container-lowest border border-outline-variant rounded-xl p-stack-lg card-shadow hover:scale-[1.02] transition-transform duration-200">
+<div class="flex items-start justify-between mb-stack-md">
+<div class="w-12 h-12 rounded-lg bg-surface-container flex items-center justify-center">
+<span class="material-symbols-outlined text-secondary">account_balance</span>
+</div>
+<div class="flex items-center gap-stack-xs text-amber-600">
+<span class="material-symbols-outlined text-[16px]" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="font-label-md">4.5</span>
+</div>
+</div>
+<h3 class="font-headline-sm text-headline-sm mb-1">HDFC Mid-Cap</h3>
+<p class="font-body-md text-on-surface-variant mb-stack-lg">Mid Cap • Equity</p>
+<div class="grid grid-cols-2 gap-stack-md mb-stack-lg">
+<div>
+<span class="block font-label-md text-on-surface-variant uppercase text-[10px]">3Y Returns</span>
+<span class="font-headline-sm performance-green">22.8%</span>
+</div>
+<div>
+<span class="block font-label-md text-on-surface-variant uppercase text-[10px]">Risk</span>
+<span class="font-label-md text-primary">High</span>
+</div>
+</div>
+<div class="flex items-center justify-between pt-stack-md border-t border-outline-variant">
+<span class="text-body-md text-on-surface-variant">Exp. Ratio: 0.92%</span>
+<a class="text-secondary font-label-md hover:underline font-bold" href="#">Details</a>
+</div>
+</div>
+<!-- Card 3 -->
+<div class="bg-surface-container-lowest border border-outline-variant rounded-xl p-stack-lg card-shadow hover:scale-[1.02] transition-transform duration-200">
+<div class="flex items-start justify-between mb-stack-md">
+<div class="w-12 h-12 rounded-lg bg-surface-container flex items-center justify-center">
+<span class="material-symbols-outlined text-secondary">monitoring</span>
+</div>
+<div class="flex items-center gap-stack-xs text-amber-600">
+<span class="material-symbols-outlined text-[16px]" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="font-label-md">4.2</span>
+</div>
+</div>
+<h3 class="font-headline-sm text-headline-sm mb-1">Parag Parikh Flexi</h3>
+<p class="font-body-md text-on-surface-variant mb-stack-lg">Flexi Cap • Equity</p>
+<div class="grid grid-cols-2 gap-stack-md mb-stack-lg">
+<div>
+<span class="block font-label-md text-on-surface-variant uppercase text-[10px]">3Y Returns</span>
+<span class="font-headline-sm performance-green">19.5%</span>
+</div>
+<div>
+<span class="block font-label-md text-on-surface-variant uppercase text-[10px]">Risk</span>
+<span class="font-label-md text-primary">Moderate</span>
+</div>
+</div>
+<div class="flex items-center justify-between pt-stack-md border-t border-outline-variant">
+<span class="text-body-md text-on-surface-variant">Exp. Ratio: 0.65%</span>
+<a class="text-secondary font-label-md hover:underline font-bold" href="#">Details</a>
+</div>
+</div>
+<!-- Card 4 -->
+<div class="bg-surface-container-lowest border border-outline-variant rounded-xl p-stack-lg card-shadow hover:scale-[1.02] transition-transform duration-200">
+<div class="flex items-start justify-between mb-stack-md">
+<div class="w-12 h-12 rounded-lg bg-surface-container flex items-center justify-center">
+<span class="material-symbols-outlined text-secondary">trending_up</span>
+</div>
+<div class="flex items-center gap-stack-xs text-amber-600">
+<span class="material-symbols-outlined text-[16px]" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="font-label-md">4.7</span>
+</div>
+</div>
+<h3 class="font-headline-sm text-headline-sm mb-1">Mirae Asset Large Cap</h3>
+<p class="font-body-md text-on-surface-variant mb-stack-lg">Large Cap • Equity</p>
+<div class="grid grid-cols-2 gap-stack-md mb-stack-lg">
+<div>
+<span class="block font-label-md text-on-surface-variant uppercase text-[10px]">3Y Returns</span>
+<span class="font-headline-sm performance-green">15.2%</span>
+</div>
+<div>
+<span class="block font-label-md text-on-surface-variant uppercase text-[10px]">Risk</span>
+<span class="font-label-md text-primary">Low-Mid</span>
+</div>
+</div>
+<div class="flex items-center justify-between pt-stack-md border-t border-outline-variant">
+<span class="text-body-md text-on-surface-variant">Exp. Ratio: 0.55%</span>
+<a class="text-secondary font-label-md hover:underline font-bold" href="#">Details</a>
+</div>
+</div>
+</div>
+</section>
+<!-- Top Categories Section -->
+<section class="bg-surface-container-low py-stack-xl">
+<div class="max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop">
+<h2 class="font-headline-md text-headline-md text-primary mb-stack-lg">Top Categories</h2>
+<div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-stack-md">
+<div class="bg-surface-container-lowest p-stack-md rounded-xl border border-outline-variant hover:border-secondary transition-colors cursor-pointer text-center group">
+<div class="w-10 h-10 mx-auto bg-surface-variant rounded-full flex items-center justify-center mb-stack-sm group-hover:bg-secondary group-hover:text-on-secondary transition-colors">
+<span class="material-symbols-outlined">rocket_launch</span>
+</div>
+<span class="font-label-md">Large Cap</span>
+</div>
+<div class="bg-surface-container-lowest p-stack-md rounded-xl border border-outline-variant hover:border-secondary transition-colors cursor-pointer text-center group">
+<div class="w-10 h-10 mx-auto bg-surface-variant rounded-full flex items-center justify-center mb-stack-sm group-hover:bg-secondary group-hover:text-on-secondary transition-colors">
+<span class="material-symbols-outlined">analytics</span>
+</div>
+<span class="font-label-md">Mid Cap</span>
+</div>
+<div class="bg-surface-container-lowest p-stack-md rounded-xl border border-outline-variant hover:border-secondary transition-colors cursor-pointer text-center group">
+<div class="w-10 h-10 mx-auto bg-surface-variant rounded-full flex items-center justify-center mb-stack-sm group-hover:bg-secondary group-hover:text-on-secondary transition-colors">
+<span class="material-symbols-outlined">token</span>
+</div>
+<span class="font-label-md">Small Cap</span>
+</div>
+<div class="bg-surface-container-lowest p-stack-md rounded-xl border border-outline-variant hover:border-secondary transition-colors cursor-pointer text-center group">
+<div class="w-10 h-10 mx-auto bg-surface-variant rounded-full flex items-center justify-center mb-stack-sm group-hover:bg-secondary group-hover:text-on-secondary transition-colors">
+<span class="material-symbols-outlined">shuffle</span>
+</div>
+<span class="font-label-md">Flexi Cap</span>
+</div>
+<div class="bg-surface-container-lowest p-stack-md rounded-xl border border-outline-variant hover:border-secondary transition-colors cursor-pointer text-center group">
+<div class="w-10 h-10 mx-auto bg-surface-variant rounded-full flex items-center justify-center mb-stack-sm group-hover:bg-secondary group-hover:text-on-secondary transition-colors">
+<span class="material-symbols-outlined">savings</span>
+</div>
+<span class="font-label-md">ELSS</span>
+</div>
+<div class="bg-surface-container-lowest p-stack-md rounded-xl border border-outline-variant hover:border-secondary transition-colors cursor-pointer text-center group">
+<div class="w-10 h-10 mx-auto bg-surface-variant rounded-full flex items-center justify-center mb-stack-sm group-hover:bg-secondary group-hover:text-on-secondary transition-colors">
+<span class="material-symbols-outlined">water_drop</span>
+</div>
+<span class="font-label-md">Liquid Funds</span>
+</div>
+</div>
+</div>
+</section>
+<!-- Educational Banner -->
+<section class="max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop py-stack-xl">
+<div class="bg-primary-container rounded-3xl p-8 md:p-12 overflow-hidden relative flex flex-col md:flex-row items-center justify-between gap-stack-lg">
+<div class="z-10 text-center md:text-left max-w-xl">
+<h2 class="font-display-lg text-display-lg-mobile md:text-headline-md text-on-secondary-container mb-stack-sm">New to mutual funds?</h2>
+<p class="font-body-lg text-on-primary-container mb-stack-lg">Don't let complex data overwhelm you. Learn how to choose your first fund and build a resilient portfolio from scratch.</p>
+<a class="inline-flex items-center gap-stack-sm bg-on-secondary-fixed text-on-secondary px-stack-xl py-3 rounded-xl font-label-md hover:scale-95 transition-transform duration-100" href="#">
+                        Get Started <span class="material-symbols-outlined">school</span>
+</a>
+</div>
+<div class="w-full md:w-1/3 flex justify-center z-10">
+<div class="w-48 h-48 bg-secondary-container/20 rounded-full flex items-center justify-center border border-secondary-container/30">
+<span class="material-symbols-outlined text-[80px] text-secondary">psychology_alt</span>
+</div>
+</div>
+<!-- Decorative background elements -->
+<div class="absolute top-0 right-0 w-64 h-64 bg-secondary/10 rounded-full blur-3xl -mr-32 -mt-32"></div>
+<div class="absolute bottom-0 left-0 w-48 h-48 bg-secondary/10 rounded-full blur-2xl -ml-24 -mb-24"></div>
+</div>
+</section>
+</main>
+<!-- Footer -->
+<footer class="bg-surface-container-lowest border-t border-outline-variant w-full py-stack-xl px-margin-desktop max-w-container-max mx-auto flex flex-col gap-stack-lg">
+<div class="flex flex-col md:flex-row justify-between gap-stack-xl">
+<div class="flex flex-col gap-stack-md max-w-sm">
+<span class="font-headline-sm text-headline-sm font-bold text-primary">FundWise</span>
+<p class="font-body-md text-on-surface-variant">FundWise Financial Services provides professional-grade mutual fund analysis and comparison tools for the modern investor.</p>
+</div>
+<div class="flex flex-wrap gap-stack-xl">
+<div class="flex flex-col gap-stack-sm">
+<span class="font-label-md text-primary uppercase">Quick Links</span>
+<a class="font-label-md text-on-surface-variant hover:text-secondary hover:underline transition-all" href="#">Explore Funds</a>
+<a class="font-label-md text-on-surface-variant hover:text-secondary hover:underline transition-all" href="#">Compare Tool</a>
+<a class="font-label-md text-on-surface-variant hover:text-secondary hover:underline transition-all" href="#">Learn Center</a>
+</div>
+<div class="flex flex-col gap-stack-sm">
+<span class="font-label-md text-primary uppercase">Company</span>
+<a class="font-label-md text-on-surface-variant hover:text-secondary hover:underline transition-all" href="#">About Us</a>
+<a class="font-label-md text-on-surface-variant hover:text-secondary hover:underline transition-all" href="#">Contact Us</a>
+<a class="font-label-md text-on-surface-variant hover:text-secondary hover:underline transition-all" href="#">Sitemap</a>
+</div>
+<div class="flex flex-col gap-stack-sm">
+<span class="font-label-md text-primary uppercase">Legal</span>
+<a class="font-label-md text-on-surface-variant hover:text-secondary hover:underline transition-all" href="#">Privacy Policy</a>
+<a class="font-label-md text-on-surface-variant hover:text-secondary hover:underline transition-all" href="#">Terms of Service</a>
+<a class="font-label-md text-on-surface-variant hover:text-secondary hover:underline transition-all" href="#">Risk Disclosure</a>
+</div>
+</div>
+</div>
+<div class="pt-stack-lg border-t border-outline-variant">
+<p class="font-body-md text-on-surface-variant text-center md:text-left leading-relaxed">
+                © 2024 FundWise Financial Services. Mutual fund investments are subject to market risks, read all scheme related documents carefully before investing.
+            </p>
+</div>
+</footer>
+<script>
+        // Simple micro-interaction for cards
+        document.querySelectorAll('.card-shadow').forEach(card => {
+            card.addEventListener('mouseenter', () => {
+                card.style.borderColor = '#0051d5';
+            });
+            card.addEventListener('mouseleave', () => {
+                card.style.borderColor = '#c4c6ce';
+            });
+        });
+
+        // Search bar focus effect
+        const searchInput = document.querySelector('input[type="text"]');
+        const searchContainer = searchInput?.parentElement;
+        if(searchInput && searchContainer) {
+            searchInput.addEventListener('focus', () => {
+                searchContainer.classList.add('shadow-lg');
+            });
+            searchInput.addEventListener('blur', () => {
+                searchContainer.classList.remove('shadow-lg');
+            });
+        }
+    </script>
+</body></html>

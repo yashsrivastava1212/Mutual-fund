@@ -1,0 +1,24 @@
+# Web
+fastapi==0.115.6
+uvicorn[standard]==0.34.0
+httpx==0.28.1
+
+# Groq LLM
+groq==0.22.0
+
+# Vector store & embeddings (LanceDB — prebuilt wheels on Windows; Chroma optional)
+lancedb==0.22.0
+sentence-transformers==3.4.1
+
+# Ingestion & scheduling
+beautifulsoup4==4.12.3
+apscheduler==3.11.0
+pyyaml==6.0.2
+
+# Config
+python-dotenv==1.0.1
+
+# Dev / lint / test
+black==25.1.0
+flake8==7.1.1
+pytest==8.3.4

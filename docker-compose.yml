@@ -1,0 +1,28 @@
+services:
+  api:
+    build: .
+    ports:
+      - "8000:8000"
+    env_file:
+      - .env
+    environment:
+      SCHEDULER_ENABLED: "true"
+      SCHEDULER_HOUR: "10"
+      SCHEDULER_MINUTE: "0"
+      SCHEDULER_TIMEZONE: "Asia/Kolkata"
+    volumes:
+      - ./data:/app/data
+    restart: unless-stopped
+
+  scheduler:
+    build: .
+    command: ["python", "-m", "scheduler.daily", "--daemon"]
+    env_file:
+      - .env
+    environment:
+      SCHEDULER_HOUR: "10"
+      SCHEDULER_MINUTE: "0"
+      SCHEDULER_TIMEZONE: "Asia/Kolkata"
+    volumes:
+      - ./data:/app/data
+    restart: unless-stopped

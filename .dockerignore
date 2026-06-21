@@ -1,0 +1,12 @@
+.venv/
+venv/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.env
+data/raw/
+data/processed/
+data/index/lancedb/
+data/index/staging/
+*.egg-info/
+.git/
