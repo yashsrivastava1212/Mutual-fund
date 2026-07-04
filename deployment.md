@@ -20,8 +20,8 @@ Vercel (ui/) ── rewrite /api/* ──► Railway (FastAPI + LanceDB volume)
 
 | Component | Platform | URL example |
 |-----------|----------|-------------|
-| Frontend | Vercel | `https://mutual-fund.vercel.app` |
-| Backend API | Railway | `https://mutual-fund-api.up.railway.app` |
+| Frontend | Vercel | `https://mutual-fund-six.vercel.app` |
+| Backend API | Railway | `https://mutual-fund-production-6625.up.railway.app` |
 
 The UI uses relative paths (`/api/chat`, `/api/corpus`). Vercel **rewrites** proxy those requests to Railway so the browser stays same-origin and CORS stays simple.
 

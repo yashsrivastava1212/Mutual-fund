@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import json
+import logging
 import re
 from dataclasses import dataclass
 from functools import lru_cache
@@ -10,6 +11,8 @@ from pathlib import Path
 from typing import Any, Literal
 
 from config.settings import Settings, get_settings
+
+logger = logging.getLogger(__name__)
 
 COMMON_TOKENS = frozenset(
     {
@@ -64,7 +67,11 @@ def _load_metadata_cached(path_str: str) -> dict[str, Any]:
 def load_scheme_metadata(settings: Settings | None = None) -> dict[str, Any]:
     """Load scheme metadata index from disk (cached by path)."""
     settings = settings or get_settings()
-    return _load_metadata_cached(str(settings.scheme_metadata_path))
+    path = settings.scheme_metadata_path
+    if not path.exists():
+        logger.warning("Scheme metadata not found at %s — run ingestion first", path)
+        return {"schemes": []}
+    return _load_metadata_cached(str(path))
 
 
 def get_scheme_by_slug(slug: str, settings: Settings | None = None) -> dict[str, Any] | None:

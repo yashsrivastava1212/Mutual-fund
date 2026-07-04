@@ -109,7 +109,11 @@ def retrieve(
         logger.error("Failed to open LanceDB table: %s", exc)
         return []
 
-    query_vector = embed_query(message, settings)
+    try:
+        query_vector = embed_query(message, settings)
+    except Exception as exc:
+        logger.error("Failed to embed query: %s", exc)
+        return []
     rows = _search_chunks(table, query_vector, scheme.slug, section_filter)
     ranked = _rerank(rows, section_intent)
 

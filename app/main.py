@@ -71,6 +71,7 @@ class HealthResponse(BaseModel):
     llm_provider: str
     llm_model: str
     corpus_schemes: int
+    index_ready: bool
 
 
 class ChatRequest(BaseModel):
@@ -88,6 +89,7 @@ class ChatResponse(BaseModel):
 @app.get("/health", response_model=HealthResponse)
 def health() -> HealthResponse:
     corpus = load_corpus()
+    index_ready = settings.scheme_metadata_path.exists() and settings.lance_db_uri.exists()
     return HealthResponse(
         status="ok",
         version=__version__,
@@ -95,6 +97,7 @@ def health() -> HealthResponse:
         llm_provider="groq",
         llm_model=settings.llm_model,
         corpus_schemes=len(corpus["schemes"]),
+        index_ready=index_ready,
     )
 
 

@@ -1,2 +1,2 @@
-/** Set at build time on Vercel via generate-vercel-config.mjs. Empty = same-origin /api rewrites. */
-window.API_BASE = window.API_BASE || "";
+/** Railway API base — used when Vercel rewrites are unavailable. */
+window.API_BASE = "https://mutual-fund-production-6625.up.railway.app";
