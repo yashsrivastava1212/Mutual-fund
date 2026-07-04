@@ -86,7 +86,7 @@ def get_settings() -> Settings:
         embedding_model=os.getenv("EMBEDDING_MODEL", BGE_SMALL).strip(),
         embedding_preset=os.getenv("EMBEDDING_PRESET", "auto").strip(),
         api_host=os.getenv("API_HOST", "0.0.0.0").strip(),
-        api_port=int(os.getenv("API_PORT", "8000")),
+        api_port=int(os.getenv("PORT") or os.getenv("API_PORT", "8000")),
         scheduler_enabled=os.getenv("SCHEDULER_ENABLED", "false").strip().lower() in ("1", "true", "yes"),
         scheduler_hour=int(os.getenv("SCHEDULER_HOUR", "10")),
         scheduler_minute=int(os.getenv("SCHEDULER_MINUTE", "0")),

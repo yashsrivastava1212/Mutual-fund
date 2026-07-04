@@ -161,27 +161,21 @@ curl -X POST https://YOUR-RAILWAY-URL.up.railway.app/api/chat \
 
 ## Part 2 — Frontend on Vercel
 
-### 2.1 One-line UI fix for Vercel
+### 2.1 UI script path (done in repo)
 
-When served from FastAPI locally, the UI loads JS from `/ui/app.js`. On Vercel the `ui/` folder is the site root, so use a relative script path.
+`ui/index.html` loads `./app.js` (Vercel root). FastAPI also serves the same file at **`GET /app.js`** so local dev at `http://localhost:8000/` works without changes.
 
-In `ui/index.html`, change:
+### 2.2 Vercel config (`ui/vercel.json`)
 
-```html
-<script src="/ui/app.js" defer></script>
+**Option A — Vercel env (recommended):** set `RAILWAY_API_URL` in Vercel project settings, then use build command:
+
+```
+node generate-vercel-config.mjs
 ```
 
-to:
+This writes `vercel.json` with your Railway API URL before deploy.
 
-```html
-<script src="./app.js" defer></script>
-```
-
-> **Local dev:** FastAPI still serves the UI at `GET /` with `/ui/app.js`. After this change, run locally with `uvicorn` and open `http://localhost:8000/ui/index.html` for UI testing, or temporarily revert the script path. Alternatively, add a FastAPI route that serves `app.js` at `/app.js` if you want both hosts to work without edits.
-
-### 2.2 Create `ui/vercel.json`
-
-Create this file in the repo (commit and push):
+**Option B — manual:** edit `ui/vercel.json` and replace `YOUR-RAILWAY-URL`:
 
 ```json
 {
@@ -213,9 +207,10 @@ This proxies `/api/chat` and `/api/corpus` from the Vercel origin to Railway. No
 2. Import `yashsrivastava1212/Mutual-fund`
 3. **Root Directory:** `ui`
 4. **Framework Preset:** Other (static)
-5. **Build Command:** leave empty
+5. **Build Command:** `node generate-vercel-config.mjs`
 6. **Output Directory:** `.` (default)
-7. Deploy
+7. **Environment variable:** `RAILWAY_API_URL` = `https://YOUR-RAILWAY-URL.up.railway.app`
+8. Deploy
 
 Vercel assigns a URL like `https://mutual-fund.vercel.app`.
 

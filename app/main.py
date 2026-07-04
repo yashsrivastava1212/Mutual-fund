@@ -159,6 +159,15 @@ def serve_ui() -> FileResponse:
     return FileResponse(index_path)
 
 
+@app.get("/app.js")
+def serve_app_js() -> FileResponse:
+    """Serve app.js at root so index.html can use ./app.js locally and on Vercel."""
+    js_path = UI_DIR / "app.js"
+    if not js_path.exists():
+        raise HTTPException(status_code=404, detail="app.js not found")
+    return FileResponse(js_path, media_type="application/javascript")
+
+
 if UI_DIR.exists():
     app.mount("/ui", StaticFiles(directory=UI_DIR), name="ui")
 

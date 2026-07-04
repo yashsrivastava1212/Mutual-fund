@@ -23,14 +23,16 @@ def test_serve_ui_index() -> None:
     assert "HDFC Scheme Terminal" in body
     assert "Facts-only. No investment advice." in body
     assert "Do not share personal information" not in body
+    assert './app.js"' in body or "./app.js" in body
 
 
 def test_ui_static_app_js() -> None:
-    response = client.get("/ui/app.js")
-    assert response.status_code == 200
-    assert "application/javascript" in response.headers["content-type"] or "text/javascript" in response.headers["content-type"]
-    assert "/api/chat" in response.text
-    assert "/api/corpus" in response.text
+    for path in ("/app.js", "/ui/app.js"):
+        response = client.get(path)
+        assert response.status_code == 200
+        assert "application/javascript" in response.headers["content-type"] or "text/javascript" in response.headers["content-type"]
+        assert "/api/chat" in response.text
+        assert "/api/corpus" in response.text
 
 
 def test_ui_contains_example_questions() -> None:
