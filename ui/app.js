@@ -18,6 +18,25 @@ const TICKER_LABELS = [
   "SENSEX",
 ];
 
+const API_BASE = (window.API_BASE || "").replace(/\/$/, "");
+
+function apiUrl(path) {
+  return `${API_BASE}${path}`;
+}
+
+async function parseErrorResponse(response) {
+  const fallback = `Request failed (${response.status}). Try again.`;
+  try {
+    const err = await response.json();
+    if (typeof err.detail === "string") return err.detail;
+    if (Array.isArray(err.detail)) return err.detail.map((d) => d.msg || String(d)).join("; ");
+    if (err.message) return err.message;
+    return fallback;
+  } catch (_) {
+    return fallback;
+  }
+}
+
 const elements = {
   messages: document.getElementById("messages"),
   welcome: document.getElementById("welcome-panel"),
@@ -161,7 +180,7 @@ async function sendMessage(text) {
   appendTypingIndicator();
 
   try {
-    const response = await fetch("/api/chat", {
+    const response = await fetch(apiUrl("/api/chat"), {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ message }),
@@ -170,12 +189,11 @@ async function sendMessage(text) {
     removeTypingIndicator();
 
     if (!response.ok) {
-      let detail = "Request failed. Try again.";
-      try {
-        const err = await response.json();
-        detail = err.detail || detail;
-      } catch (_) { /* ignore */ }
+      let detail = await parseErrorResponse(response);
       if (response.status === 429) detail = "Rate limit hit. Wait a moment.";
+      if (response.status === 404 && !API_BASE) {
+        detail = "API not connected. Set RAILWAY_API_URL on Vercel and redeploy.";
+      }
       showError(detail);
       appendMessage("assistant", `<p class="text-red-400 font-mono text-sm">${escapeHtml(detail)}</p>`);
       return;
@@ -184,7 +202,9 @@ async function sendMessage(text) {
     appendAssistantMessage(await response.json());
   } catch (_) {
     removeTypingIndicator();
-    const detail = "Server unreachable.";
+    const detail = API_BASE
+      ? "Server unreachable. Check Railway is running."
+      : "Server unreachable. Set RAILWAY_API_URL on Vercel and redeploy.";
     showError(detail);
     appendMessage("assistant", `<p class="text-red-400 font-mono text-sm">${escapeHtml(detail)}</p>`);
   } finally {
@@ -240,7 +260,7 @@ function renderSchemeCard(scheme, index) {
 
 async function loadSchemes() {
   try {
-    const res = await fetch("/api/corpus");
+    const res = await fetch(apiUrl("/api/corpus"));
     const data = await res.json();
     schemes = data.schemes || [];
     if (elements.schemeCount) elements.schemeCount.textContent = `${schemes.length} funds`;

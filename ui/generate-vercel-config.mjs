@@ -29,4 +29,13 @@ const config = {
 };
 
 writeFileSync("vercel.json", `${JSON.stringify(config, null, 2)}\n`);
+writeFileSync(
+  "config.js",
+  `/** Generated at build time — do not edit on Vercel. */\nwindow.API_BASE = ${JSON.stringify(apiUrl.includes("YOUR-RAILWAY-URL") ? "" : apiUrl)};\n`,
+);
 console.log(`Wrote vercel.json with API destination: ${apiUrl}`);
+if (apiUrl.includes("YOUR-RAILWAY-URL")) {
+  console.warn("WARNING: RAILWAY_API_URL is not set. Set it in Vercel project env and redeploy.");
+} else {
+  console.log(`Wrote config.js with API_BASE: ${apiUrl}`);
+}

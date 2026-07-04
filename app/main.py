@@ -132,8 +132,15 @@ def chat(request_body: ChatRequest, request: Request) -> ChatResponse:
         raise HTTPException(status_code=400, detail=error)
 
     logger.info("Chat request from %s (%s chars)", client_ip, len(sanitized))
-    result = handle_chat(sanitized)
-    return ChatResponse(**result)
+    try:
+        result = handle_chat(sanitized)
+        return ChatResponse(**result)
+    except Exception as exc:
+        logger.exception("Chat request failed: %s", exc)
+        raise HTTPException(
+            status_code=503,
+            detail="Backend error. Ensure GROQ_API_KEY is set and ingestion has run on Railway.",
+        ) from exc
 
 
 @app.get("/api/scheduler/status")
