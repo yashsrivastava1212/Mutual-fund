@@ -45,6 +45,7 @@ class Settings:
     scheduler_timezone: str
     scheduler_max_retries: int
     scheduler_retry_delay_seconds: int
+    ingest_on_startup: bool
 
     @property
     def llm_configured(self) -> bool:
@@ -93,6 +94,7 @@ def get_settings() -> Settings:
         scheduler_timezone=os.getenv("SCHEDULER_TIMEZONE", "Asia/Kolkata").strip(),
         scheduler_max_retries=int(os.getenv("SCHEDULER_MAX_RETRIES", "2")),
         scheduler_retry_delay_seconds=int(os.getenv("SCHEDULER_RETRY_DELAY_SECONDS", "60")),
+        ingest_on_startup=os.getenv("INGEST_ON_STARTUP", "false").strip().lower() in ("1", "true", "yes"),
     )
 
 

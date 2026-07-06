@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import logging
+import threading
 from contextlib import asynccontextmanager
 from pathlib import Path
 from typing import Any
@@ -34,9 +35,26 @@ rate_limiter = RateLimiter(
 _scheduler = None
 
 
+def _index_ready() -> bool:
+    return settings.scheme_metadata_path.exists() and settings.lance_db_uri.exists()
+
+
+def _run_startup_ingestion() -> None:
+    try:
+        from scheduler.daily import run_scheduled_ingestion
+
+        logger.info("INGEST_ON_STARTUP: building index (first deploy or empty volume)...")
+        run_scheduled_ingestion(settings)
+        logger.info("INGEST_ON_STARTUP: complete")
+    except Exception:
+        logger.exception("INGEST_ON_STARTUP: ingestion failed")
+
+
 @asynccontextmanager
 async def lifespan(app: FastAPI):
     global _scheduler
+    if settings.ingest_on_startup and not _index_ready():
+        threading.Thread(target=_run_startup_ingestion, daemon=True).start()
     if settings.scheduler_enabled:
         from scheduler.daily import start_background_scheduler
 
@@ -89,7 +107,7 @@ class ChatResponse(BaseModel):
 @app.get("/health", response_model=HealthResponse)
 def health() -> HealthResponse:
     corpus = load_corpus()
-    index_ready = settings.scheme_metadata_path.exists() and settings.lance_db_uri.exists()
+    index_ready = _index_ready()
     return HealthResponse(
         status="ok",
         version=__version__,
