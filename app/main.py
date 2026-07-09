@@ -101,6 +101,7 @@ class ChatResponse(BaseModel):
     citation_url: str
     last_updated: str
     is_refusal: bool
+    out_of_corpus: bool = False
     disclaimer: str
 
 

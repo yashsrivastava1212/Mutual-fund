@@ -118,4 +118,5 @@ def test_chat_insufficient_context() -> None:
     assert response.status_code == 200
     data = response.json()
     assert data["is_refusal"] is False
-    assert "could not match" in data["answer"].lower()
+    assert data["out_of_corpus"] is True
+    assert "please ask details about the given mutual funds only" in data["answer"].lower()

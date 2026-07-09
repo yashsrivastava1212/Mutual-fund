@@ -8,19 +8,39 @@ from typing import Literal
 
 Confidence = Literal["high", "medium"]
 
+# (section, keywords/phrases, confidence) — longer phrases matched first via best keyword length
 SECTION_RULES: list[tuple[str, tuple[str, ...], Confidence]] = [
-    ("expense_ratio", ("expense ratio", "ter"), "high"),
-    ("exit_load", ("exit load", "redemption charge"), "high"),
-    ("minimum_sip", ("minimum sip", "sip amount", "min sip"), "high"),
-    ("minimum_investment", ("minimum investment", "lumpsum", "lump sum", "min investment"), "high"),
-    ("riskometer", ("riskometer", "risk level"), "high"),
-    ("benchmark", ("benchmark", "index tracked"), "medium"),
-    ("fund_management", ("fund manager", "fund managers", "who manages", "who manage", "tenure"), "high"),
+    ("expense_ratio", (
+        "expense ratio", "total expense ratio", "ter", "annual charges",
+        "management fee", "management fees", "fund charges", "cost of fund",
+        "how much does it cost", "charges for managing",
+    ), "high"),
+    ("exit_load", (
+        "exit load", "redemption charge", "redemption fee", "withdrawal charge",
+        "charges on exit", "charges if i sell", "charges if i redeem", "early exit",
+    ), "high"),
+    ("minimum_sip", (
+        "minimum sip", "sip amount", "min sip", "monthly sip", "sip minimum",
+        "least sip", "smallest sip",
+    ), "high"),
+    ("minimum_investment", (
+        "minimum investment", "lumpsum", "lump sum", "min investment",
+        "minimum amount", "least investment", "smallest investment",
+    ), "high"),
+    ("riskometer", ("riskometer", "risk level", "risk rating", "how risky"), "high"),
+    ("benchmark", ("benchmark", "index tracked", "tracks which index", "compared to which index"), "high"),
+    ("fund_management", (
+        "fund manager", "fund managers", "who manages", "who manage", "who runs",
+        "managed by", "portfolio manager", "fund lead", "tenure", "manager name",
+    ), "high"),
     ("stamp_duty", ("stamp duty",), "high"),
-    ("scheme_overview", ("objective", "launch date", "category", "overview", "inception"), "medium"),
-    ("riskometer", ("risk",), "medium"),
-    ("benchmark", ("index",), "medium"),
-    ("fund_management", ("manager",), "medium"),
+    ("scheme_overview", (
+        "objective", "launch date", "category", "overview", "inception",
+        "what kind of fund", "investment objective",
+    ), "medium"),
+    ("riskometer", ("risk profile",), "medium"),
+    ("benchmark", ("index", "tracks"), "medium"),
+    ("fund_management", ("manager", "managers"), "medium"),
 ]
 
 

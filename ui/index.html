@@ -212,21 +212,31 @@
       </div>
 
       <div id="messages" class="flex-1 overflow-y-auto p-4 md:p-6 space-y-4 min-h-[240px]" aria-live="polite">
-        <section id="welcome-panel" class="animate-fade-in">
-          <div class="rounded-xl border border-terminal-border bg-terminal-card p-5 md:p-6">
-            <div class="flex items-start gap-4">
-              <div class="w-12 h-12 rounded-xl bg-blue-600/20 flex items-center justify-center shrink-0">
-                <span class="material-symbols-outlined text-terminal-accent text-2xl">query_stats</span>
-              </div>
-              <div class="flex-1 min-w-0">
-                <h2 class="text-lg font-bold mb-1">Scheme intelligence desk</h2>
-                <p class="text-sm text-terminal-muted mb-4">
-                  Click a watchlist fund or use quick prompts below.
+        <section id="welcome-panel" class="animate-fade-in space-y-4">
+          <!-- Highlighted onboarding -->
+          <div class="rounded-xl border-2 border-terminal-accent bg-blue-950/40 p-4 md:p-5 shadow-lg shadow-blue-900/20">
+            <div class="flex items-start gap-3">
+              <span class="material-symbols-outlined text-terminal-accent text-2xl shrink-0">info</span>
+              <div>
+                <h2 class="text-base md:text-lg font-bold text-terminal-text mb-2">
+                  Choose one of the 5 HDFC mutual funds below
+                </h2>
+                <p class="text-sm text-terminal-text/90 mb-3">
+                  Ask factual questions <strong>only</strong> about these schemes — for example
+                  expense ratio (TER), exit load, minimum SIP, benchmark, riskometer, or fund managers.
                 </p>
-                <p class="text-[10px] uppercase tracking-wider text-terminal-muted mb-2">Quick prompts</p>
-                <div id="example-questions" class="grid gap-2 sm:grid-cols-1"></div>
+                <ul id="welcome-fund-list" class="text-sm font-mono space-y-1.5 text-terminal-accent mb-3">
+                  <li class="text-terminal-muted animate-pulse">Loading funds…</li>
+                </ul>
+                <p class="text-xs text-terminal-amber border border-terminal-amber/30 bg-terminal-amber/10 rounded-lg px-3 py-2">
+                  Click a fund in the watchlist or pick a quick prompt to get started.
+                </p>
               </div>
             </div>
+          </div>
+          <div class="rounded-xl border border-terminal-border bg-terminal-card p-5 md:p-6">
+            <p class="text-[10px] uppercase tracking-wider text-terminal-muted mb-2">Example questions</p>
+            <div id="example-questions" class="grid gap-2 sm:grid-cols-1"></div>
           </div>
         </section>
       </div>

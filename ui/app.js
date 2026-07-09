@@ -37,9 +37,21 @@ async function parseErrorResponse(response) {
   }
 }
 
+const ASKABLE_TOPICS = [
+  "Expense ratio (TER)",
+  "Exit load",
+  "Minimum SIP",
+  "Minimum lumpsum",
+  "Benchmark index",
+  "Riskometer",
+  "Fund managers",
+  "Stamp duty",
+];
+
 const elements = {
   messages: document.getElementById("messages"),
   welcome: document.getElementById("welcome-panel"),
+  welcomeFundList: document.getElementById("welcome-fund-list"),
   form: document.getElementById("chat-form"),
   input: document.getElementById("message-input"),
   sendBtn: document.getElementById("send-btn"),
@@ -126,7 +138,10 @@ function appendUserMessage(text) {
 
 function appendAssistantMessage(data) {
   const refusalClass = data.is_refusal ? " refusal-card" : "";
-  const badge = data.is_refusal
+  const outOfCorpusClass = data.out_of_corpus ? " border-l-4 border-terminal-amber bg-amber-950/30 pl-3 py-2 rounded-r-lg" : "";
+  const badge = data.out_of_corpus
+    ? `<span class="inline-flex items-center gap-1 text-[10px] uppercase tracking-wide text-terminal-amber bg-amber-950/50 border border-terminal-amber/50 px-2 py-0.5 rounded mb-2 font-mono">Out of scope</span>`
+    : data.is_refusal
     ? `<span class="inline-flex items-center gap-1 text-[10px] uppercase tracking-wide text-red-400 bg-red-950/50 border border-red-800 px-2 py-0.5 rounded mb-2 font-mono">Refusal</span>`
     : `<span class="inline-flex items-center gap-1 text-[10px] uppercase tracking-wide text-terminal-green bg-green-950/40 border border-green-800/50 px-2 py-0.5 rounded mb-2 font-mono">Verified fact</span>`;
 
@@ -143,7 +158,7 @@ function appendAssistantMessage(data) {
 
   appendMessage(
     "assistant",
-    `<div class="${refusalClass}">${badge}
+    `<div class="${refusalClass}${outOfCorpusClass}">${badge}
        <p class="leading-relaxed text-terminal-text">${formatAnswer(data.answer)}</p>
        ${citation}${footer}
      </div>`
@@ -253,9 +268,25 @@ function renderSchemeCard(scheme, index) {
     </svg>`;
   card.addEventListener("click", () => {
     setActiveScheme(scheme);
-    sendMessage(`Tell me about ${scheme.scheme_name}`);
+    elements.input?.focus();
   });
   return card;
+}
+
+function renderWelcomeFunds() {
+  if (!elements.welcomeFundList) return;
+  if (!schemes.length) {
+    elements.welcomeFundList.innerHTML = '<li class="text-terminal-muted">Could not load funds.</li>';
+    return;
+  }
+  const fundItems = schemes
+    .map((s, i) => `<li class="flex items-start gap-2"><span class="text-terminal-muted">${i + 1}.</span><span>${escapeHtml(s.scheme_name)}</span></li>`)
+    .join("");
+  const topicItems = ASKABLE_TOPICS.map((t) => `<li class="text-terminal-muted text-xs">• ${escapeHtml(t)}</li>`).join("");
+  elements.welcomeFundList.innerHTML = `
+    ${fundItems}
+    <li class="pt-2 text-xs uppercase tracking-wider text-terminal-muted font-sans">You can ask about:</li>
+    ${topicItems}`;
 }
 
 async function loadSchemes() {
@@ -268,10 +299,12 @@ async function loadSchemes() {
       elements.schemeList.innerHTML = "";
       schemes.forEach((s, i) => elements.schemeList.appendChild(renderSchemeCard(s, i)));
     }
+    renderWelcomeFunds();
   } catch (_) {
     if (elements.schemeList) {
       elements.schemeList.innerHTML = '<p class="text-xs text-red-400 p-2">Could not load watchlist</p>';
     }
+    renderWelcomeFunds();
   }
 }
 

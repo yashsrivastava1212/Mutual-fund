@@ -15,11 +15,9 @@ from app.validator import validate_response
 
 logger = logging.getLogger(__name__)
 
-INSUFFICIENT_CONTEXT_ANSWER = (
-    "I could not match your question to one of the five HDFC schemes in my corpus. "
-    "Please name the scheme (for example, HDFC Mid Cap Fund Direct Growth) and ask about "
-    "expense ratio, exit load, minimum SIP, benchmark, riskometer, or fund managers."
-)
+OUT_OF_CORPUS_MESSAGE = "Please ask details about the given Mutual Funds only."
+
+INSUFFICIENT_CONTEXT_ANSWER = OUT_OF_CORPUS_MESSAGE
 
 FALLBACK_ANSWER = (
     "I am unable to provide a verified answer from the indexed sources. "
@@ -44,6 +42,7 @@ def handle_factual_query(
             AMFI_EDUCATION_URL,
             _today_iso(),
             is_refusal=False,
+            out_of_corpus=True,
         )
 
     context = build_context_block(chunks)

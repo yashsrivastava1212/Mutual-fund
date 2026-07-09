@@ -58,3 +58,5 @@ def test_ui_chat_form_elements() -> None:
     assert 'id="chat-form"' in body
     assert 'id="message-input"' in body
     assert 'id="example-questions"' in body
+    assert 'id="welcome-fund-list"' in body
+    assert "Choose one of the 5 HDFC mutual funds" in body

@@ -103,6 +103,7 @@ def test_get_scheme_by_slug(settings_with_live_index: Settings) -> None:
     ("query", "expected_section", "expected_confidence"),
     [
         ("What is the expense ratio?", "expense_ratio", "high"),
+        ("what is the TER for mid cap", "expense_ratio", "high"),
         ("exit load for mid cap", "exit_load", "high"),
         ("minimum sip amount", "minimum_sip", "high"),
         ("lumpsum minimum investment", "minimum_investment", "high"),

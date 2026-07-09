@@ -25,6 +25,7 @@ def format_response(
     citation_url: str,
     last_updated: str,
     is_refusal: bool = False,
+    out_of_corpus: bool = False,
 ) -> dict:
     """Format structured JSON response for the UI."""
     body = truncate_to_max_sentences(_strip_urls(answer.strip()))
@@ -36,6 +37,7 @@ def format_response(
         "citation_url": citation_url,
         "last_updated": last_updated,
         "is_refusal": is_refusal,
+        "out_of_corpus": out_of_corpus,
         "disclaimer": DISCLAIMER,
     }
 
